@@ -50,8 +50,8 @@ flowchart LR
 4. Build the public reader with Compendium:
 
 ```bash
-cd ../everend-compendium
-npm run site:build -- ../aux-demworld --out=dist-demo
+cd ../everend-forge-compendium
+npm run site:build -- ../everend-forge-demworld --out=dist-demo
 ```
 
 ## Validate the vault
