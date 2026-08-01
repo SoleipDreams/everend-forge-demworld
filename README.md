@@ -66,3 +66,7 @@ The validator checks entity identity, taxonomy and Compendium metadata, PathBran
 ## Guía rápida en español
 
 Este repositorio es un universo de demostración completo. Abre la carpeta raíz en Forge Suite para navegar el canon en WorldNotion, editar las rutas y finales en PathBranching, y generar una enciclopedia estática con Compendium. Todo el contenido es sintético y puede reutilizarse bajo CC BY 4.0.
+
+## Support
+
+If Everend Forge is useful to you, you can support its development on [Ko-fi](https://ko-fi.com/heinzdbv).
