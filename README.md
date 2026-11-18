@@ -1,4 +1,8 @@
-# aux-demworld — The Grand Continuity
+# The Grand Continuity — Everend Forge demo world
+
+<p align="center"><a href="README.es.md">Español</a> · <a href="https://github.com/SoleipDreams/everend-forge-worldnotion/releases/latest">Download WorldNotion</a> · <a href="https://github.com/SoleipDreams/everend-forge-pathbranching/releases/latest">Download PathBranching</a> · <a href="https://github.com/SoleipDreams/everend-forge-compendium/releases/latest">Download Compendium</a></p>
+
+<p align="center"><img src="https://img.shields.io/badge/content-CC%20BY%204.0-blue.svg" alt="Content license: CC BY 4.0"></p>
 
 An original, synthetic demonstration universe for Everend Forge. It shows how the same vault can be explored in WorldNotion, authored as a branching narrative in PathBranching, and published as a read-only site with Compendium.
 
@@ -67,6 +71,18 @@ The validator checks entity identity, taxonomy and Compendium metadata, PathBran
 
 Este repositorio es un universo de demostración completo. Abre la carpeta raíz en Forge Suite para navegar el canon en WorldNotion, editar las rutas y finales en PathBranching, y generar una enciclopedia estática con Compendium. Todo el contenido es sintético y puede reutilizarse bajo CC BY 4.0.
 
+~~~mermaid
+flowchart LR
+  A[WorldNotion: canon] --> B[PathBranching: choices and endings]
+  A --> C[Compendium: public reading site]
+  B --> C
+~~~
+
 ## Support
 
 If Everend Forge is useful to you, you can support its development on [Ko-fi](https://ko-fi.com/heinzdbv).
+
+## License
+
+The synthetic setting, stories, configurations, and documentation are CC BY 4.0. Preserve attribution and indicate changes when adapting them. See [license scope](LICENSE), [full license text](LICENSE-CC-BY-4.0), and the [brand policy](TRADEMARKS.md).
+

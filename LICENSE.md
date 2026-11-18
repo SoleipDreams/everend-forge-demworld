@@ -1,7 +1,5 @@
 # License
 
-The synthetic worldbuilding, narrative, configuration, and documentation in this repository are licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0).
+Synthetic setting, narrative, configuration and documentation are CC BY 4.0. Third-party material is separately marked.
 
-You may share and adapt this material for any purpose, including commercial use, provided that you credit Everend Forge and indicate whether changes were made.
-
-License text: https://creativecommons.org/licenses/by/4.0/
+See TRADEMARKS.md for the separate Everend brand policy. Third-party works retain their own license notices.
