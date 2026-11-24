@@ -1,0 +1,158 @@
+{
+  "storageVersion": "0.5",
+  "storyId": "last-acceptable-reboot",
+  "sequenceId": "sequence:credentials",
+  "event": {
+    "id": "event:orbital-coupon",
+    "name": "The Invoice Runner Heist",
+    "description": "Tess and Sol recover a coupon for one impossible maneuver.",
+    "type": "exploration",
+    "branchRef": "branch:stellar",
+    "text": {
+      "format": "plain",
+      "content": "At Orbital Cantina Nine, Sol's heist begins with forged catering invoices and ends when Tess asks the manager why a sacred plot device is stored beside expired loyalty cards."
+    },
+    "canonRefs": [
+      "tess-quill",
+      "captain-sol-ledger",
+      "orbital-cantina-nine",
+      "stellar-plot-coupon"
+    ],
+    "decisions": [
+      {
+        "id": "decision:coupon-method",
+        "name": "Acquire the coupon",
+        "type": "dialogue",
+        "outcomes": [
+          {
+            "id": "outcome:coupon-invoice",
+            "name": "Approve a compensating invoice",
+            "consequences": [
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:keyCount"
+                },
+                "operation": "set",
+                "value": 1
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable"
+                },
+                "operation": "set"
+              }
+            ],
+            "visibleText": "Approve a compensating invoice",
+            "unavailableBehavior": "locked",
+            "logic": {
+              "then": [
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:keyCount"
+                  },
+                  "operation": "set",
+                  "value": 1
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable"
+                  },
+                  "operation": "set"
+                }
+              ]
+            }
+          },
+          {
+            "id": "outcome:coupon-stunt",
+            "name": "Perform the impossible maneuver first",
+            "consequences": [
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:keyCount"
+                },
+                "operation": "set",
+                "value": 1
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:spectacle"
+                },
+                "operation": "set",
+                "value": 4
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable"
+                },
+                "operation": "set"
+              }
+            ],
+            "visibleText": "Perform the impossible maneuver first",
+            "unavailableBehavior": "locked",
+            "logic": {
+              "then": [
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:keyCount"
+                  },
+                  "operation": "set",
+                  "value": 1
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:spectacle"
+                  },
+                  "operation": "set",
+                  "value": 4
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable"
+                  },
+                  "operation": "set"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "id": "transition:orbit-to-academy",
+        "from": "event:orbital-coupon",
+        "to": "event:wand-exam",
+        "label": "Plot a course for Hexford",
+        "order": 0,
+        "mode": "conditional",
+        "role": "flow"
+      }
+    ],
+    "childEventIds": [],
+    "dialogues": [],
+    "presentEntityRefs": [
+      "tess-quill",
+      "captain-sol-ledger",
+      "orbital-cantina-nine",
+      "stellar-plot-coupon"
+    ],
+    "dialogueStarts": [],
+    "boundaryBindings": []
+  }
+}

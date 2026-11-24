@@ -1,0 +1,12 @@
+=== Nana Null's Impossible Audit === #^event:audit-chamber
+
+-> "Choose a Continuity Sponsor" #^transition:audit-to-alliance
+
+= dialogue: The original purpose #^dialogue:null-engine
+    Nana Null: A healthy continuity is a conversation, dear. A dead one is a filing cabinet with excellent branding. #^beat:dialogue:null-engine:1
+
+? Accept the Red Stamp #^decision:take-stamp
+* [Carry it as a tool, not a crown] #^outcome:carry-stamp
+    ~ $undefined<undefined> = undefined
+* [Leave it on the table] #^outcome:leave-stamp
+    ~ $"solidarity"<variable:solidarity> = 1

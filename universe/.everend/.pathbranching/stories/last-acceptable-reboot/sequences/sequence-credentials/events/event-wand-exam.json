@@ -1,0 +1,188 @@
+{
+  "storageVersion": "0.5",
+  "storyId": "last-acceptable-reboot",
+  "sequenceId": "sequence:credentials",
+  "event": {
+    "id": "event:wand-exam",
+    "name": "Applied Foreshadowing Final",
+    "description": "Professor Beige tests whether Tess can use power without mistaking it for authority.",
+    "type": "normal",
+    "branchRef": "branch:arcane",
+    "text": {
+      "format": "plain",
+      "content": "The exam offers four glowing answers: Courage, Cunning, Scholarship, and Merchandise. Tess notices a fifth answer hidden in the accessibility statement: None of the above may rule without consent."
+    },
+    "canonRefs": [
+      "tess-quill",
+      "professor-beige",
+      "hexford-academy-annex",
+      "provisional-wand-license"
+    ],
+    "dialogues": [
+      {
+        "id": "dialogue:beige-exam",
+        "title": "The actual lesson",
+        "speakerRef": "professor-beige",
+        "text": {
+          "format": "plain",
+          "content": "Magic is the easy part. The difficult part is deciding who must live with it afterward."
+        },
+        "canonRefs": [
+          "professor-beige"
+        ],
+        "entryBeatId": "beat:dialogue:beige-exam:1",
+        "beats": [
+          {
+            "id": "beat:dialogue:beige-exam:1",
+            "kind": "speech",
+            "blockRef": {
+              "scriptId": "script:dialogue:event:wand-exam:dialogue:beige-exam",
+              "blockId": "block:dialogue:beige-exam:speech"
+            }
+          }
+        ],
+        "members": [
+          {
+            "kind": "beat",
+            "id": "beat:dialogue:beige-exam:1"
+          }
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "decision:exam-answer",
+        "name": "Answer the final question",
+        "type": "dialogue",
+        "outcomes": [
+          {
+            "id": "outcome:fifth-answer",
+            "name": "Reject the premise",
+            "consequences": [
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:keyCount"
+                },
+                "operation": "set",
+                "value": 2
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable"
+                },
+                "operation": "set"
+              }
+            ],
+            "visibleText": "Reject the premise",
+            "unavailableBehavior": "locked",
+            "logic": {
+              "then": [
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:keyCount"
+                  },
+                  "operation": "set",
+                  "value": 2
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable"
+                  },
+                  "operation": "set"
+                }
+              ]
+            }
+          },
+          {
+            "id": "outcome:all-answers",
+            "name": "Circle every answer and annotate",
+            "consequences": [
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:keyCount"
+                },
+                "operation": "set",
+                "value": 2
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:compliance"
+                },
+                "operation": "set",
+                "value": 3
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable"
+                },
+                "operation": "set"
+              }
+            ],
+            "visibleText": "Circle every answer and annotate",
+            "unavailableBehavior": "locked",
+            "logic": {
+              "then": [
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:keyCount"
+                  },
+                  "operation": "set",
+                  "value": 2
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:compliance"
+                  },
+                  "operation": "set",
+                  "value": 3
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable"
+                  },
+                  "operation": "set"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "id": "transition:academy-to-wilds",
+        "from": "event:wand-exam",
+        "to": "event:creature-arbitration",
+        "label": "Take the field practicum",
+        "order": 0,
+        "mode": "conditional",
+        "role": "flow"
+      }
+    ],
+    "childEventIds": [],
+    "presentEntityRefs": [
+      "tess-quill",
+      "professor-beige",
+      "hexford-academy-annex",
+      "provisional-wand-license"
+    ],
+    "dialogueStarts": [],
+    "boundaryBindings": []
+  }
+}

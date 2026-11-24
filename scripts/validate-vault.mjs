@@ -4,7 +4,8 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 import YAML from "yaml";
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const root = path.join(projectRoot, "universe");
 const errors = [];
 
 function fail(message) {
@@ -79,17 +80,204 @@ function isFolderDescription(filePath) {
   return fs.existsSync(path.join(path.dirname(filePath), base));
 }
 
+const visualDocumentFiles = [];
 const entityFiles = walk(root).filter((filePath) => {
   if (!filePath.endsWith(".md")) return false;
   const relative = path.relative(root, filePath);
-  if (["README.md", "LICENSE.md", "aux-demworld.md"].includes(relative))
+  if (
+    ["README.md", "README.es.md", "LICENSE.md", "TRADEMARKS.md"].includes(relative)
+  )
     return false;
   if (relative.startsWith(`.everend${path.sep}templates${path.sep}`))
     return false;
-  return !isFolderDescription(filePath);
+  if (isFolderDescription(filePath)) return false;
+  const text = fs.readFileSync(filePath, "utf8").replace(/\r\n/g, "\n");
+  const match = text.match(/^---\n([\s\S]*?)\n---/);
+  if (match) {
+    try {
+      const metadata = YAML.parse(match[1]);
+      if (metadata?.forgeView && typeof metadata.forgeView === "object") {
+        visualDocumentFiles.push(filePath);
+        return false;
+      }
+    } catch {
+      // The normal entity frontmatter pass reports malformed YAML once.
+    }
+  }
+  return true;
 });
 
+const propertiesConfig = readJson(".everend/properties.json");
+const propertyDefinitionsByPath = new Map();
+function collectPropertyDefinitions(definitions = [], parentPath = []) {
+  for (const definition of definitions) {
+    if (typeof definition.id !== "string") continue;
+    const propertyPath = [...parentPath, definition.id];
+    propertyDefinitionsByPath.set(propertyPath.join("."), definition);
+    collectPropertyDefinitions(definition.children, propertyPath);
+  }
+}
+collectPropertyDefinitions(propertiesConfig?.baseProperties?.definitions);
+collectPropertyDefinitions(propertiesConfig?.customFields?.definitions);
+for (const id of propertiesConfig?.customFields?.globalFields ?? []) {
+  if (!propertyDefinitionsByPath.has(id))
+    propertyDefinitionsByPath.set(id, { id, type: "text" });
+}
+const entityTypeIds = new Set(
+  (propertiesConfig?.entityTypes?.definitions ?? []).map((definition) => definition.id),
+);
+
+function validatePropertyTree(
+  relative,
+  frontmatter,
+  entityType,
+  references = [],
+  record = frontmatter,
+  parentPath = [],
+) {
+  if (!record || typeof record !== "object" || Array.isArray(record)) return;
+  for (const [field, value] of Object.entries(record)) {
+    if (parentPath.length === 0 && field === "variants") {
+      if (entityType !== "character")
+        fail(`${relative}: variants are supported only on characters`);
+      if (!value || typeof value !== "object" || Array.isArray(value)) {
+        fail(`${relative}: 'variants' must be a map of variant IDs to labels and overrides`);
+        continue;
+      }
+      for (const [variantId, variant] of Object.entries(value)) {
+        if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(variantId))
+          fail(`${relative}: invalid variant id '${variantId}'`);
+        if (!variant || typeof variant !== "object" || Array.isArray(variant)) {
+          fail(`${relative}: variant '${variantId}' must be an object`);
+          continue;
+        }
+        if (typeof variant.label !== "string" || !variant.label.trim())
+          fail(`${relative}: variant '${variantId}' needs a label`);
+        if (variant.overrides !== undefined) {
+          if (!variant.overrides || typeof variant.overrides !== "object" || Array.isArray(variant.overrides))
+            fail(`${relative}: variant '${variantId}' overrides must be a property map`);
+          else
+            validatePropertyTree(relative, frontmatter, entityType, references, variant.overrides);
+        }
+      }
+      continue;
+    }
+    const propertyPath = [...parentPath, field];
+    const pathKey = propertyPath.join(".");
+    const definition = propertyDefinitionsByPath.get(pathKey);
+    if (!definition) {
+      fail(`${relative}: property '${pathKey}' is not defined in .everend/properties.json`);
+      continue;
+    }
+    if (
+      Array.isArray(definition.appliesTo) &&
+      typeof entityType === "string" &&
+      !definition.appliesTo.includes(entityType)
+    ) {
+      fail(`${relative}: property '${pathKey}' does not apply to '${entityType}'`);
+    }
+    if (definition.type === "group") {
+      if (value !== null && (typeof value !== "object" || Array.isArray(value))) {
+        fail(`${relative}: '${pathKey}' must be a nested object`);
+      } else if (value && typeof value === "object") {
+        validatePropertyTree(relative, frontmatter, entityType, references, value, propertyPath);
+      }
+      continue;
+    }
+    if (value === undefined || value === null) continue;
+
+    const expectedArray =
+      ["multiselect", "entity-ref-list"].includes(definition.type) ||
+      ["tags", "aliases"].includes(field);
+    if (expectedArray ? !Array.isArray(value) : Array.isArray(value)) {
+      fail(
+        `${relative}: '${pathKey}' must be ${expectedArray ? "a list" : "a single value"}`,
+      );
+      continue;
+    }
+    if (
+      !expectedArray &&
+      ["text", "select", "date", "url", "entity-ref"].includes(definition.type) &&
+      typeof value !== "string"
+    ) {
+      fail(`${relative}: '${pathKey}' must be a string`);
+      continue;
+    }
+    if (definition.type === "number" && typeof value !== "number") {
+      fail(`${relative}: '${pathKey}' must be a number`);
+      continue;
+    }
+    if (definition.type === "number" && typeof value === "number") {
+      if (typeof definition.min === "number" && value < definition.min)
+        fail(`${relative}: '${pathKey}' must be at least ${definition.min}`);
+      if (typeof definition.max === "number" && value > definition.max)
+        fail(`${relative}: '${pathKey}' must be at most ${definition.max}`);
+    }
+    if (definition.type === "boolean" && typeof value !== "boolean") {
+      fail(`${relative}: '${pathKey}' must be a boolean`);
+      continue;
+    }
+    if (expectedArray && value.some((item) => typeof item !== "string")) {
+      fail(`${relative}: '${pathKey}' must contain only strings`);
+      continue;
+    }
+
+    if (definition.options?.length) {
+      const allowedValues = new Set(definition.options.map((option) => option.value));
+      const values = expectedArray ? value : [value];
+      for (const selected of values) {
+        if (!allowedValues.has(String(selected)))
+          fail(`${relative}: '${String(selected)}' is not a configured option for '${pathKey}'`);
+      }
+    }
+    if (["entity-ref", "entity-ref-list"].includes(definition.type)) {
+      references.push({ path: pathKey, value, definition });
+    }
+  }
+}
+
+const templateDirectory = path.join(root, ".everend", "templates");
+if (fs.existsSync(templateDirectory)) {
+  for (const filePath of walk(templateDirectory).filter((file) => file.endsWith(".md"))) {
+    const relative = path.relative(root, filePath);
+    const content = fs.readFileSync(filePath, "utf8");
+    const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    if (!match) {
+      fail(`${relative}: missing YAML template frontmatter`);
+      continue;
+    }
+    for (const token of ["id", "name", "status"]) {
+      if (!new RegExp(`{{\\s*${token}\\s*}}`).test(match[1]))
+        fail(`${relative}: template frontmatter must contain {{${token}}}`);
+    }
+    if (/\{\s+\{|\}\s+\}/.test(match[1])) {
+      fail(`${relative}: malformed template placeholder`);
+      continue;
+    }
+    try {
+      const rendered = match[1]
+        .replace(/{{\s*id\s*}}/g, "demworld-template")
+        .replace(/{{\s*name\s*}}/g, "Demworld Template")
+        .replace(/{{\s*status\s*}}/g, "draft");
+      const frontmatter = YAML.parse(rendered);
+      if (!frontmatter || typeof frontmatter !== "object") {
+        fail(`${relative}: rendered template frontmatter must be a YAML object`);
+        continue;
+      }
+      if (!entityTypeIds.has(frontmatter.type))
+        fail(`${relative}: template type '${frontmatter.type}' is not defined in .everend/properties.json`);
+      validatePropertyTree(relative, frontmatter, frontmatter.type);
+    } catch (error) {
+      fail(
+        `${relative}: invalid rendered template frontmatter (${error instanceof Error ? error.message : String(error)})`,
+      );
+    }
+  }
+}
+
 const entityIds = new Map();
+const entityFrontmatter = new Map();
+const entityReferences = new Map();
 for (const filePath of entityFiles) {
   const relative = path.relative(root, filePath);
   const frontmatter = parseFrontmatter(filePath);
@@ -99,6 +287,15 @@ for (const filePath of entityFiles) {
       fail(`${relative}: missing required string field '${field}'`);
     }
   }
+  if (
+    typeof frontmatter.type === "string" &&
+    entityTypeIds.size > 0 &&
+    !entityTypeIds.has(frontmatter.type)
+  ) {
+    fail(`${relative}: entity type '${frontmatter.type}' is not defined in .everend/properties.json`);
+  }
+  const references = [];
+  validatePropertyTree(relative, frontmatter, frontmatter.type, references);
   if (
     typeof frontmatter.id === "string" &&
     !/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(frontmatter.id)
@@ -111,6 +308,107 @@ for (const filePath of entityFiles) {
         `${relative}: duplicate id '${frontmatter.id}' also used by ${entityIds.get(frontmatter.id)}`,
       );
     entityIds.set(frontmatter.id, relative);
+    entityFrontmatter.set(frontmatter.id, frontmatter);
+    entityReferences.set(frontmatter.id, references);
+  }
+}
+
+for (const [entityId, frontmatter] of entityFrontmatter) {
+  for (const { path: fieldPath, value, definition } of entityReferences.get(entityId) ?? []) {
+    if (value === "") continue;
+    const targetIds = Array.isArray(value) ? value : [value];
+    for (const reference of targetIds) {
+      if (typeof reference !== "string" || !entityFrontmatter.has(reference)) {
+        fail(`${entityIds.get(entityId)}: '${fieldPath}' references missing entity '${String(reference)}'`);
+        continue;
+      }
+      if (
+        Array.isArray(definition.targetTypes) &&
+        !definition.targetTypes.includes(entityFrontmatter.get(reference).type)
+      ) {
+        fail(
+          `${entityIds.get(entityId)}: '${fieldPath}' references '${reference}' with unsupported type '${entityFrontmatter.get(reference).type}'`,
+        );
+      }
+    }
+  }
+}
+
+for (const filePath of visualDocumentFiles) {
+  const relative = path.relative(root, filePath);
+  const frontmatter = parseFrontmatter(filePath);
+  const document = frontmatter?.forgeView;
+  if (typeof frontmatter?.id !== "string" || typeof frontmatter?.name !== "string")
+    fail(`${relative}: visual documents need stable id and name metadata`);
+  if (!document || document.version !== 1) {
+    fail(`${relative}: unsupported forgeView visual document`);
+    continue;
+  }
+  if (document.kind === "timeline") {
+    if (!document.calendar || !Array.isArray(document.items) || !Array.isArray(document.views)) {
+      fail(`${relative}: timeline needs a calendar, items, and views`);
+      continue;
+    }
+    for (const item of document.items) {
+      if (!item || !["event", "period"].includes(item.kind) || typeof item.title !== "string" || !/^-?\d+$/.test(String(item.start))) {
+        fail(`${relative}: invalid timeline item`);
+        continue;
+      }
+      if (item.kind === "period" && !/^-?\d+$/.test(String(item.end)))
+        fail(`${relative}: timeline period '${item.title}' needs an integer end ordinal`);
+      if (item.reference && !entityFrontmatter.has(item.reference))
+        fail(`${relative}: timeline item '${item.title}' references missing entity '${item.reference}'`);
+    }
+  } else if (document.kind === "relationships") {
+    if (!document.variants || typeof document.variants !== "object" || !Array.isArray(document.relationshipTypes)) {
+      fail(`${relative}: relationship map needs canvas variants and relationship types`);
+      continue;
+    }
+    for (const [variantId, canvas] of Object.entries(document.variants)) {
+      if (!canvas || !Array.isArray(canvas.nodes) || !Array.isArray(canvas.edges)) {
+        fail(`${relative}: relationship canvas '${variantId}' needs nodes and edges`);
+        continue;
+      }
+      const nodeIds = new Set(canvas.nodes.map((node) => node.id));
+      for (const node of canvas.nodes) {
+        if (node.reference && !entityFrontmatter.has(node.reference))
+          fail(`${relative}: relationship node '${node.name}' references missing entity '${node.reference}'`);
+      }
+      for (const edge of canvas.edges) {
+        if (!nodeIds.has(edge.from?.nodeId) || !nodeIds.has(edge.to?.nodeId))
+          fail(`${relative}: relationship edge '${edge.id}' references a missing node`);
+        if (!document.relationshipTypes.some((type) => type.id === edge.typeId))
+          fail(`${relative}: relationship edge '${edge.id}' uses an unknown type '${edge.typeId}'`);
+      }
+    }
+  } else {
+    fail(`${relative}: forgeView kind must be 'timeline' or 'relationships'`);
+  }
+}
+
+const wikilinkTargets = new Set();
+for (const filePath of entityFiles) {
+  const frontmatter = parseFrontmatter(filePath);
+  if (!frontmatter) continue;
+  const candidates = [
+    frontmatter.id,
+    frontmatter.name,
+    path.basename(filePath, ".md"),
+    ...(Array.isArray(frontmatter.aliases) ? frontmatter.aliases : []),
+  ];
+  for (const candidate of candidates) {
+    if (typeof candidate === "string" && candidate.trim())
+      wikilinkTargets.add(candidate.trim().toLocaleLowerCase());
+  }
+}
+
+for (const filePath of entityFiles) {
+  const relative = path.relative(root, filePath);
+  const content = fs.readFileSync(filePath, "utf8");
+  for (const match of content.matchAll(/\[\[([^\]]+)\]\]/g)) {
+    const target = match[1].split("|")[0].split("#")[0].trim();
+    if (target && !wikilinkTargets.has(target.toLocaleLowerCase()))
+      fail(`${relative}: unresolved wikilink [[${target}]]`);
   }
 }
 
@@ -136,6 +434,10 @@ if (
 const universe = readJson(".everend/universe.json");
 if (typeof universe?.name !== "string" || !universe.name.trim())
   fail(".everend/universe.json: missing universe name");
+if (typeof universe?.branchId !== "string" || !universe.branchId.trim())
+  fail(".everend/universe.json: missing branch id");
+if (taxonomy?.branch?.id !== universe?.branchId)
+  fail(".everend/taxonomy.yaml: branch id does not match .everend/universe.json");
 
 const manifestPath = ".everend/.pathbranching/manifest.json";
 const manifest = readJson(manifestPath);
@@ -157,13 +459,28 @@ for (const entry of manifest?.stories ?? []) {
   storyCount += 1;
   const story = readJson(entry.path);
   if (!story) continue;
+  const supportedStoryStorageVersions = new Set(["0.2", "0.5"]);
   if (
-    story.storageVersion !== "0.2" ||
+    !supportedStoryStorageVersions.has(story.storageVersion) ||
     story.storyId !== entry.id ||
     !Array.isArray(story.sequenceIds)
   ) {
     fail(`${entry.path}: invalid modular story metadata`);
     continue;
+  }
+  if (story.name !== entry.name)
+    fail(`${entry.path}: story name does not match its manifest entry`);
+  const canonicalStory = entityFrontmatter.get(entry.id);
+  if (!canonicalStory || canonicalStory.type !== "story")
+    fail(`${entry.path}: no matching WorldNotion story entity for '${entry.id}'`);
+  else if (canonicalStory.name !== story.name)
+    fail(`${entry.path}: story name does not match its WorldNotion entity`);
+  if (
+    typeof story.universeRootPath === "string" &&
+    (path.isAbsolute(story.universeRootPath) ||
+      path.win32.isAbsolute(story.universeRootPath))
+  ) {
+    fail(`${entry.path}: universeRootPath must not contain a machine-specific absolute path`);
   }
 
   const canonIds = new Set((story.canonRefs ?? []).map((ref) => ref.id));
@@ -205,9 +522,51 @@ for (const entry of manifest?.stories ?? []) {
         fail(`${eventPath}: missing or invalid event '${eventId}'`);
         continue;
       }
+      const evpathPath = eventPath.replace(/\.json$/, ".evpath");
+      const evpathAbsolutePath = path.join(root, evpathPath);
+      if (!fs.existsSync(evpathAbsolutePath)) {
+        fail(`${evpathPath}: missing canonical event narrative`);
+      } else if (!fs.readFileSync(evpathAbsolutePath, "utf8").trim()) {
+        fail(`${evpathPath}: canonical event narrative is empty`);
+      }
       events.set(event.id, event);
       eventCount += 1;
+      if (typeof event.text?.content !== "string" || !event.text.content.trim())
+        fail(`${eventPath}: event is missing narrative text`);
       if (event.type === "final") finalCount += 1;
+      const interactionDefinitions = new Map();
+      for (const definition of event.interactionDefinitions ?? []) {
+        if (typeof definition.id !== "string" || typeof definition.name !== "string" || !Array.isArray(definition.results)) {
+          fail(`${eventPath}: invalid interaction definition`);
+          continue;
+        }
+        interactionDefinitions.set(definition.id, definition);
+        if (definition.mechanic?.kind === "skillcheck") {
+          const mechanic = definition.mechanic;
+          if (!mechanic.dice || !Number.isSafeInteger(mechanic.dice.count) || mechanic.dice.count < 1 || !Number.isSafeInteger(mechanic.dice.sides) || mechanic.dice.sides < 2)
+            fail(`${eventPath}: skill check '${definition.name}' needs a valid dice pool`);
+          const actorId = mechanic.actor?.kind === "entity" ? mechanic.actor.entityId : undefined;
+          const actor = actorId ? entityFrontmatter.get(actorId) : undefined;
+          if (!actor || actor.type !== "character") {
+            fail(`${eventPath}: skill check '${definition.name}' needs a character actor`);
+          } else if (mechanic.actor.variantId && mechanic.actor.variantId !== "base" && !actor.variants?.[mechanic.actor.variantId]) {
+            fail(`${eventPath}: skill check '${definition.name}' references missing character variant '${mechanic.actor.variantId}'`);
+          }
+          const propertyId = mechanic.skill?.kind === "property" ? mechanic.skill.propertyId : undefined;
+          const numericProperty = [...propertyDefinitionsByPath.values()].some((property) => property.id === propertyId && property.type === "number");
+          if (!numericProperty) fail(`${eventPath}: skill check '${definition.name}' references a missing numeric property`);
+        }
+      }
+      const interactionUseIds = new Set();
+      for (const use of event.interactionUses ?? []) {
+        if (typeof use.id !== "string" || interactionUseIds.has(use.id))
+          fail(`${eventPath}: interaction uses need unique stable IDs`);
+        interactionUseIds.add(use.id);
+        if (!interactionDefinitions.has(use.definitionId))
+          fail(`${eventPath}: interaction '${use.id}' references missing definition '${String(use.definitionId)}'`);
+        if (!["before", "during", "after"].includes(use.moment))
+          fail(`${eventPath}: interaction '${use.id}' has invalid timing`);
+      }
       for (const ref of event.canonRefs ?? []) {
         if (!canonIds.has(ref))
           fail(
@@ -290,8 +649,14 @@ for (const entry of manifest?.stories ?? []) {
   }
 }
 
-if (finalCount < 5)
-  fail(`Expected at least five terminal endings; found ${finalCount}`);
+const branch = readYaml(".everend/branch.yaml");
+if (branch?.id !== universe?.branchId)
+  fail(".everend/branch.yaml: branch id does not match .everend/universe.json");
+if (branch?.pathbranching?.storyId !== manifest?.activeStoryId)
+  fail(".everend/branch.yaml: PathBranching story id does not match the active manifest story");
+
+if (finalCount !== 6)
+  fail(`Expected six narrative endings; found ${finalCount}`);
 
 if (errors.length) {
   console.error(`Vault validation failed with ${errors.length} problem(s):`);

@@ -1,0 +1,12 @@
+=== The Executive Notes === #^event:producer-monologue
+
+-> "Choose the Continuity" #^transition:producer-to-console
+
+= dialogue: Vice President of Destiny #^dialogue:producer-offer
+    The Executive Producer: You can save every part of the world that tests well. I can even put your name above the title. #^beat:dialogue:producer-offer:1
+
+? Answer the offer #^decision:answer-producer
+* [Reject ownership of destiny] #^outcome:reject-producer
+    ~ $"ambition"<variable:ambition> = false
+* [Ask about the dental plan] #^outcome:consider-promotion
+    ~ $"ambition"<variable:ambition> = true

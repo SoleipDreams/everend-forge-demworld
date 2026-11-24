@@ -1,0 +1,15 @@
+=== Applied Foreshadowing Final === #^event:wand-exam
+
+-> "The Bureaucratodon Grievance" #^transition:academy-to-wilds
+
+= dialogue: The actual lesson #^dialogue:beige-exam
+    Professor Beige the Terminal: Magic is the easy part. The difficult part is deciding who must live with it afterward. #^beat:dialogue:beige-exam:1
+
+? Answer the final question #^decision:exam-answer
+* [Reject the premise] #^outcome:fifth-answer
+    ~ $"keyCount"<variable:keyCount> = 2
+    ~ $undefined<undefined> = undefined
+* [Circle every answer and annotate] #^outcome:all-answers
+    ~ $"keyCount"<variable:keyCount> = 2
+    ~ $"compliance"<variable:compliance> = 3
+    ~ $undefined<undefined> = undefined

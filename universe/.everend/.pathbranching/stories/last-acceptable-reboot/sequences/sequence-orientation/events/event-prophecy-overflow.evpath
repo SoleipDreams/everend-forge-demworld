@@ -1,0 +1,14 @@
+=== Prophecy Printer Overflow === #^event:prophecy-overflow
+
+-> "The Not-Secret Corridor" #^transition:prophecy-to-corridor
+
+= dialogue: An administrative response #^dialogue:tess-opening
+    Tess Quill: I would like to appeal this destiny on the grounds that I have a meeting at ten. #^beat:dialogue:tess-opening:1
+
+? Answer the prophecy #^decision:answer-prophecy
+* [Open an official audit] #^outcome:open-audit
+    ~ $"compliance"<variable:compliance> = 1
+* [Ask who benefits] #^outcome:ask-who-benefits
+    ~ $"solidarity"<variable:solidarity> = 1
+* [Request a trailer first] #^outcome:request-trailer
+    ~ $"spectacle"<variable:spectacle> = 1

@@ -1,0 +1,10 @@
+=== The Official Restoration Plan === #^event:ministry-briefing
+
+-> "One Problem, Four Credentials" #^transition:ministry-to-convergence
+
+? Set terms for restoration #^decision:ministry-terms
+* [Preserve contradictory memories] #^outcome:protect-memories
+    ~ $"compliance"<variable:compliance> = 3
+    ~ $"solidarity"<variable:solidarity> = 1
+* [Prioritize a clean canon] #^outcome:accept-clean-canon
+    ~ $"compliance"<variable:compliance> = 4

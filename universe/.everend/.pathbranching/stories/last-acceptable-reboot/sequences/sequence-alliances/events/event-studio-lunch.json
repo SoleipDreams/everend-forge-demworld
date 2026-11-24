@@ -1,0 +1,150 @@
+{
+  "storageVersion": "0.5",
+  "storyId": "last-acceptable-reboot",
+  "sequenceId": "sequence:alliances",
+  "event": {
+    "id": "event:studio-lunch",
+    "name": "Lunch with Continuity Studios",
+    "description": "The Studio offers resources, prestige, and a contract whose final page keeps moving.",
+    "type": "normal",
+    "branchRef": "branch:studio",
+    "text": {
+      "format": "plain",
+      "content": "The Executive Producer serves a deconstructed hero's journey in twelve tiny courses. Duchess Spoiler quietly warns Tess that dessert contains a third-act betrayal."
+    },
+    "canonRefs": [
+      "tess-quill",
+      "executive-producer",
+      "duchess-spoiler",
+      "continuity-studios",
+      "reboot-cycle"
+    ],
+    "decisions": [
+      {
+        "id": "decision:studio-terms",
+        "name": "Negotiate the adaptation",
+        "type": "dialogue",
+        "outcomes": [
+          {
+            "id": "outcome:creative-control",
+            "name": "Demand final cut",
+            "consequences": [
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:spectacle"
+                },
+                "operation": "set",
+                "value": 4
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:ambition"
+                },
+                "operation": "set",
+                "value": true
+              }
+            ],
+            "visibleText": "Demand final cut",
+            "unavailableBehavior": "locked",
+            "logic": {
+              "then": [
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:spectacle"
+                  },
+                  "operation": "set",
+                  "value": 4
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:ambition"
+                  },
+                  "operation": "set",
+                  "value": true
+                }
+              ]
+            }
+          },
+          {
+            "id": "outcome:inside-job",
+            "name": "Pretend to accept",
+            "consequences": [
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:spectacle"
+                },
+                "operation": "set",
+                "value": 3
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:ambition"
+                },
+                "operation": "set",
+                "value": false
+              }
+            ],
+            "visibleText": "Pretend to accept",
+            "unavailableBehavior": "locked",
+            "logic": {
+              "then": [
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:spectacle"
+                  },
+                  "operation": "set",
+                  "value": 3
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:ambition"
+                  },
+                  "operation": "set",
+                  "value": false
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "id": "transition:studio-to-convergence",
+        "from": "event:studio-lunch",
+        "to": "event:alliance-convergence",
+        "label": "Receive a production budget",
+        "order": 0,
+        "mode": "conditional",
+        "role": "flow"
+      }
+    ],
+    "childEventIds": [],
+    "dialogues": [],
+    "presentEntityRefs": [
+      "tess-quill",
+      "executive-producer",
+      "duchess-spoiler",
+      "continuity-studios",
+      "reboot-cycle"
+    ],
+    "dialogueStarts": [],
+    "boundaryBindings": []
+  }
+}

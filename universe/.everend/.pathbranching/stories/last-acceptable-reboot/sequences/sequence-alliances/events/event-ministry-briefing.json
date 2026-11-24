@@ -1,0 +1,130 @@
+{
+  "storageVersion": "0.5",
+  "storyId": "last-acceptable-reboot",
+  "sequenceId": "sequence:alliances",
+  "event": {
+    "id": "event:ministry-briefing",
+    "name": "The Official Restoration Plan",
+    "description": "Tess receives authority, forms, and a dangerously simple answer.",
+    "type": "normal",
+    "branchRef": "branch:ministry",
+    "text": {
+      "format": "plain",
+      "content": "The Ministry proposes repairing one timeline and archiving the rest. Nobody uses the word erase, although it appears in the footer fourteen times."
+    },
+    "canonRefs": [
+      "tess-quill",
+      "ministry-narrative-compliance",
+      "red-stamp-canon",
+      "canon-debt"
+    ],
+    "decisions": [
+      {
+        "id": "decision:ministry-terms",
+        "name": "Set terms for restoration",
+        "type": "dialogue",
+        "outcomes": [
+          {
+            "id": "outcome:protect-memories",
+            "name": "Preserve contradictory memories",
+            "consequences": [
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:compliance"
+                },
+                "operation": "set",
+                "value": 3
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:solidarity"
+                },
+                "operation": "set",
+                "value": 1
+              }
+            ],
+            "visibleText": "Preserve contradictory memories",
+            "unavailableBehavior": "locked",
+            "logic": {
+              "then": [
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:compliance"
+                  },
+                  "operation": "set",
+                  "value": 3
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:solidarity"
+                  },
+                  "operation": "set",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          {
+            "id": "outcome:accept-clean-canon",
+            "name": "Prioritize a clean canon",
+            "consequences": [
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:compliance"
+                },
+                "operation": "set",
+                "value": 4
+              }
+            ],
+            "visibleText": "Prioritize a clean canon",
+            "unavailableBehavior": "locked",
+            "logic": {
+              "then": [
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:compliance"
+                  },
+                  "operation": "set",
+                  "value": 4
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "id": "transition:ministry-to-convergence",
+        "from": "event:ministry-briefing",
+        "to": "event:alliance-convergence",
+        "label": "Receive Ministry access",
+        "order": 0,
+        "mode": "conditional",
+        "role": "flow"
+      }
+    ],
+    "childEventIds": [],
+    "dialogues": [],
+    "presentEntityRefs": [
+      "tess-quill",
+      "ministry-narrative-compliance",
+      "red-stamp-canon",
+      "canon-debt"
+    ],
+    "dialogueStarts": [],
+    "boundaryBindings": []
+  }
+}

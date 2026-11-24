@@ -1,0 +1,15 @@
+version: "0.1"
+id: grand-continuity
+label: "The Grand Continuity"
+role: primary
+authoring: ai
+narrator: neutral
+description: "Canonical demonstration universe shared across WorldNotion, PathBranching, and Compendium."
+worldnotion:
+  propertiesMode: template
+  template: worldbuilding
+  templateSource: default
+  taxonomy: .everend/taxonomy.yaml
+pathbranching:
+  storyId: last-acceptable-reboot
+  manifest: .everend/.pathbranching/manifest.json

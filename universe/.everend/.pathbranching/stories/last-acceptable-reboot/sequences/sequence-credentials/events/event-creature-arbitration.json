@@ -1,0 +1,178 @@
+{
+  "storageVersion": "0.5",
+  "storyId": "last-acceptable-reboot",
+  "sequenceId": "sequence:credentials",
+  "event": {
+    "id": "event:creature-arbitration",
+    "name": "The Bureaucratodon Grievance",
+    "description": "The traditional creature battle is replaced by binding arbitration.",
+    "type": "normal",
+    "branchRef": "branch:creature",
+    "text": {
+      "format": "plain",
+      "content": "A Bureaucratodon blocks the ranger office with six years of unpaid habitat receipts arranged across its armored back. Sprig-Nine translates the creature's roar as a demand for reimbursement plus dental."
+    },
+    "canonRefs": [
+      "tess-quill",
+      "sprig-nine",
+      "bureaucratodon",
+      "collectible-wilds",
+      "mutual-aid-badge"
+    ],
+    "decisions": [
+      {
+        "id": "decision:resolve-grievance",
+        "name": "Resolve the labor dispute",
+        "type": "dialogue",
+        "outcomes": [
+          {
+            "id": "outcome:full-settlement",
+            "name": "Approve the full settlement",
+            "consequences": [
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:keyCount"
+                },
+                "operation": "set",
+                "value": 3
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:solidarity"
+                },
+                "operation": "set",
+                "value": 4
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable"
+                },
+                "operation": "set"
+              }
+            ],
+            "visibleText": "Approve the full settlement",
+            "unavailableBehavior": "locked",
+            "logic": {
+              "then": [
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:keyCount"
+                  },
+                  "operation": "set",
+                  "value": 3
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:solidarity"
+                  },
+                  "operation": "set",
+                  "value": 4
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable"
+                  },
+                  "operation": "set"
+                }
+              ]
+            }
+          },
+          {
+            "id": "outcome:mediation",
+            "name": "Negotiate phased reimbursement",
+            "consequences": [
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:keyCount"
+                },
+                "operation": "set",
+                "value": 3
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:solidarity"
+                },
+                "operation": "set",
+                "value": 3
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable"
+                },
+                "operation": "set"
+              }
+            ],
+            "visibleText": "Negotiate phased reimbursement",
+            "unavailableBehavior": "locked",
+            "logic": {
+              "then": [
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:keyCount"
+                  },
+                  "operation": "set",
+                  "value": 3
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:solidarity"
+                  },
+                  "operation": "set",
+                  "value": 3
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable"
+                  },
+                  "operation": "set"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "id": "transition:wilds-to-cape",
+        "from": "event:creature-arbitration",
+        "to": "event:cape-permit-test",
+        "label": "Answer Cape City's emergency call",
+        "order": 0,
+        "mode": "conditional",
+        "role": "flow"
+      }
+    ],
+    "childEventIds": [],
+    "dialogues": [],
+    "presentEntityRefs": [
+      "tess-quill",
+      "sprig-nine",
+      "bureaucratodon",
+      "collectible-wilds",
+      "mutual-aid-badge"
+    ],
+    "dialogueStarts": [],
+    "boundaryBindings": []
+  }
+}

@@ -1,0 +1,294 @@
+{
+  "storageVersion": "0.5",
+  "storyId": "last-acceptable-reboot",
+  "sequenceId": "sequence:orientation",
+  "event": {
+    "id": "event:choose-alliance",
+    "name": "Choose a Continuity Sponsor",
+    "description": "Three factions offer mutually exclusive support packages.",
+    "type": "normal",
+    "text": {
+      "format": "plain",
+      "content": "In Meridian Junction's least private transit lounge, the Ministry offers authority, Freeplot offers allies, and Continuity Studios offers lunch plus a suspicious amount of production value."
+    },
+    "canonRefs": [
+      "tess-quill",
+      "meridian-junction",
+      "ministry-narrative-compliance",
+      "freeplot-cooperative",
+      "continuity-studios"
+    ],
+    "decisions": [
+      {
+        "id": "decision:select-alliance",
+        "name": "Select an approach",
+        "description": "The routes reconverge after changing Tess's leverage and final options.",
+        "type": "dialogue",
+        "outcomes": [
+          {
+            "id": "outcome:route-ministry",
+            "name": "Restore the official canon",
+            "consequences": [
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:route"
+                },
+                "operation": "set",
+                "value": "ministry"
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:compliance"
+                },
+                "operation": "set",
+                "value": 2
+              }
+            ],
+            "visibleText": "Restore the official canon",
+            "unavailableBehavior": "locked",
+            "logic": {
+              "then": [
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:route"
+                  },
+                  "operation": "set",
+                  "value": "ministry"
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:compliance"
+                  },
+                  "operation": "set",
+                  "value": 2
+                }
+              ]
+            }
+          },
+          {
+            "id": "outcome:route-freeplot",
+            "name": "Open the stories",
+            "consequences": [
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:route"
+                },
+                "operation": "set",
+                "value": "freeplot"
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:solidarity"
+                },
+                "operation": "set",
+                "value": 2
+              }
+            ],
+            "visibleText": "Open the stories",
+            "unavailableBehavior": "locked",
+            "logic": {
+              "then": [
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:route"
+                  },
+                  "operation": "set",
+                  "value": "freeplot"
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:solidarity"
+                  },
+                  "operation": "set",
+                  "value": 2
+                }
+              ]
+            }
+          },
+          {
+            "id": "outcome:route-studio",
+            "name": "Make the reboot spectacular",
+            "consequences": [
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:route"
+                },
+                "operation": "set",
+                "value": "studio"
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:spectacle"
+                },
+                "operation": "set",
+                "value": 2
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:ambition"
+                },
+                "operation": "set",
+                "value": true
+              }
+            ],
+            "visibleText": "Make the reboot spectacular",
+            "unavailableBehavior": "locked",
+            "logic": {
+              "then": [
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:route"
+                  },
+                  "operation": "set",
+                  "value": "studio"
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:spectacle"
+                  },
+                  "operation": "set",
+                  "value": 2
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:ambition"
+                  },
+                  "operation": "set",
+                  "value": true
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "id": "transition:alliance-to-ministry",
+        "from": "event:choose-alliance",
+        "to": "event:ministry-briefing",
+        "label": "Ministry route",
+        "conditions": {
+          "type": "value",
+          "subject": {
+            "kind": "variable",
+            "variableId": "variable:route"
+          },
+          "operator": "==",
+          "value": "ministry"
+        },
+        "order": 0,
+        "mode": "conditional",
+        "role": "route",
+        "logic": {
+          "when": {
+            "type": "value",
+            "subject": {
+              "kind": "variable",
+              "variableId": "variable:route"
+            },
+            "operator": "==",
+            "value": "ministry"
+          }
+        }
+      },
+      {
+        "id": "transition:alliance-to-freeplot",
+        "from": "event:choose-alliance",
+        "to": "event:freeplot-pitch",
+        "label": "Freeplot route",
+        "conditions": {
+          "type": "value",
+          "subject": {
+            "kind": "variable",
+            "variableId": "variable:route"
+          },
+          "operator": "==",
+          "value": "freeplot"
+        },
+        "order": 1,
+        "mode": "conditional",
+        "role": "route",
+        "logic": {
+          "when": {
+            "type": "value",
+            "subject": {
+              "kind": "variable",
+              "variableId": "variable:route"
+            },
+            "operator": "==",
+            "value": "freeplot"
+          }
+        }
+      },
+      {
+        "id": "transition:alliance-to-studio",
+        "from": "event:choose-alliance",
+        "to": "event:studio-lunch",
+        "label": "Studio route",
+        "conditions": {
+          "type": "value",
+          "subject": {
+            "kind": "variable",
+            "variableId": "variable:route"
+          },
+          "operator": "==",
+          "value": "studio"
+        },
+        "order": 2,
+        "mode": "conditional",
+        "role": "route",
+        "logic": {
+          "when": {
+            "type": "value",
+            "subject": {
+              "kind": "variable",
+              "variableId": "variable:route"
+            },
+            "operator": "==",
+            "value": "studio"
+          }
+        }
+      }
+    ],
+    "childEventIds": [],
+    "dialogues": [],
+    "presentEntityRefs": [
+      "tess-quill",
+      "meridian-junction",
+      "ministry-narrative-compliance",
+      "freeplot-cooperative",
+      "continuity-studios"
+    ],
+    "dialogueStarts": [],
+    "boundaryBindings": []
+  }
+}

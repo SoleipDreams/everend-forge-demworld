@@ -3,4 +3,10 @@ dist/
 dist-demo/
 .DS_Store
 .validation/
+.everend/.worldnotion/
+.everend/.compendium/
+.everend/.pathbranching/.transactions/
+universe/.everend/.worldnotion/
+universe/.everend/.compendium/
+universe/.everend/.pathbranching/.transactions/
 

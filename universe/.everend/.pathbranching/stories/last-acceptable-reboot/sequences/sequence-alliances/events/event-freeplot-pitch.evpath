@@ -1,0 +1,9 @@
+=== The Cooperative Fork === #^event:freeplot-pitch
+
+-> "One Problem, Four Credentials" #^transition:freeplot-to-convergence
+
+? Define the commons #^decision:freeplot-terms
+* [Commit to shared maintenance] #^outcome:shared-maintenance
+    ~ $"solidarity"<variable:solidarity> = 4
+* [Let every community fork freely] #^outcome:local-forks
+    ~ $"solidarity"<variable:solidarity> = 3

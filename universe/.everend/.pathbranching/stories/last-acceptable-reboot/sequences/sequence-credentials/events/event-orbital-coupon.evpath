@@ -1,0 +1,13 @@
+=== The Invoice Runner Heist === #^event:orbital-coupon
+# category: Exploration
+
+-> "Applied Foreshadowing Final" #^transition:orbit-to-academy
+
+? Acquire the coupon #^decision:coupon-method
+* [Approve a compensating invoice] #^outcome:coupon-invoice
+    ~ $"keyCount"<variable:keyCount> = 1
+    ~ $undefined<undefined> = undefined
+* [Perform the impossible maneuver first] #^outcome:coupon-stunt
+    ~ $"keyCount"<variable:keyCount> = 1
+    ~ $"spectacle"<variable:spectacle> = 4
+    ~ $undefined<undefined> = undefined

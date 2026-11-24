@@ -1,0 +1,240 @@
+{
+  "storageVersion": "0.5",
+  "storyId": "last-acceptable-reboot",
+  "sequenceId": "sequence:credentials",
+  "event": {
+    "id": "event:cape-permit-test",
+    "name": "The Unauthorized Skyline Beam",
+    "description": "Tess must solve a superhero crisis as a public-service problem.",
+    "type": "normal",
+    "branchRef": "branch:cape",
+    "text": {
+      "format": "plain",
+      "content": "A promotional villain activates a skyline beam without a permit. Paladin Patch evacuates the roof while Tess finds the cancellation clause hidden in the device's end-user agreement."
+    },
+    "canonRefs": [
+      "tess-quill",
+      "paladin-patch",
+      "cape-city-permit-hall",
+      "emergency-cape-permit"
+    ],
+    "decisions": [
+      {
+        "id": "decision:stop-beam",
+        "name": "Stop the beam responsibly",
+        "type": "dialogue",
+        "outcomes": [
+          {
+            "id": "outcome:civic-response",
+            "name": "Coordinate a public response",
+            "consequences": [
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:keyCount"
+                },
+                "operation": "set",
+                "value": 4
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:compliance"
+                },
+                "operation": "set",
+                "value": 4
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable"
+                },
+                "operation": "set"
+              }
+            ],
+            "visibleText": "Coordinate a public response",
+            "unavailableBehavior": "locked",
+            "logic": {
+              "then": [
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:keyCount"
+                  },
+                  "operation": "set",
+                  "value": 4
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:compliance"
+                  },
+                  "operation": "set",
+                  "value": 4
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable"
+                  },
+                  "operation": "set"
+                }
+              ]
+            }
+          },
+          {
+            "id": "outcome:dramatic-unplug",
+            "name": "Unplug it during the monologue",
+            "consequences": [
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:keyCount"
+                },
+                "operation": "set",
+                "value": 4
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable",
+                  "variableId": "variable:spectacle"
+                },
+                "operation": "set",
+                "value": 4
+              },
+              {
+                "type": "value",
+                "subject": {
+                  "kind": "variable"
+                },
+                "operation": "set"
+              }
+            ],
+            "visibleText": "Unplug it during the monologue",
+            "unavailableBehavior": "locked",
+            "logic": {
+              "then": [
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:keyCount"
+                  },
+                  "operation": "set",
+                  "value": 4
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable",
+                    "variableId": "variable:spectacle"
+                  },
+                  "operation": "set",
+                  "value": 4
+                },
+                {
+                  "type": "value",
+                  "subject": {
+                    "kind": "variable"
+                  },
+                  "operation": "set"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "id": "transition:cape-to-assembly",
+        "from": "event:cape-permit-test",
+        "to": "event:credentials-assembled",
+        "role": "flow",
+        "order": 0,
+        "mode": "conditional",
+        "label": "Assemble the four credentials"
+      },
+      {
+        "id": "transition:boundary:event:cape-permit-test:input:transition:wilds-to-cape:decision:event:cape-permit-test:decision:stop-beam",
+        "from": "boundary:event:cape-permit-test:input:transition:wilds-to-cape",
+        "to": "decision:event:cape-permit-test:decision:stop-beam",
+        "role": "flow",
+        "order": 0,
+        "mode": "conditional",
+        "source": "graph"
+      }
+    ],
+    "childEventIds": [],
+    "dialogues": [],
+    "presentEntityRefs": [
+      "tess-quill",
+      "paladin-patch",
+      "cape-city-permit-hall",
+      "emergency-cape-permit"
+    ],
+    "dialogueStarts": [],
+    "boundaryBindings": [],
+    "interactionDefinitions": [
+      {
+        "id": "definition-interaction-f31f20f7-efe7-41e2-a002-2217ca76499c",
+        "name": "Audit the beam cancellation clause",
+        "mechanic": {
+          "kind": "skillcheck",
+          "actor": {
+            "kind": "entity",
+            "entityId": "tess-quill",
+            "variantId": "chosen-one"
+          },
+          "skill": {
+            "kind": "property",
+            "subject": {
+              "kind": "entity",
+              "entityId": "tess-quill",
+              "variantId": "chosen-one"
+            },
+            "propertyId": "ingenuity"
+          },
+          "dice": {
+            "count": 1,
+            "sides": 20
+          },
+          "dicePresetId": "builtin-d20",
+          "modifier": 0,
+          "difficulty": 15,
+          "difficultyOperator": ">="
+        },
+        "results": [
+          {
+            "id": "definition-interaction-f31f20f7-efe7-41e2-a002-2217ca76499c:success",
+            "name": "Find the cancellation clause",
+            "key": "success"
+          },
+          {
+            "id": "definition-interaction-f31f20f7-efe7-41e2-a002-2217ca76499c:failure",
+            "name": "Trigger a compliance warning",
+            "key": "failure"
+          }
+        ],
+        "prompt": {
+          "format": "plain",
+          "content": "Tess uses the Temporary Chosen One variant: roll 1D20 + Ingenuity (5). A total of 15 or higher finds the cancellation clause before the beam fires."
+        }
+      }
+    ],
+    "interactionUses": [
+      {
+        "id": "interaction-f31f20f7-efe7-41e2-a002-2217ca76499c",
+        "definitionId": "definition-interaction-f31f20f7-efe7-41e2-a002-2217ca76499c",
+        "moment": "before",
+        "ownerNodeId": "decision:event:cape-permit-test:decision:stop-beam"
+      }
+    ]
+  }
+}

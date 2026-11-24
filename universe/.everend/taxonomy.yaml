@@ -1,0 +1,110 @@
+specVersion: "0.1"
+branch:
+  id: grand-continuity
+  authoring: ai
+  propertiesMode: template
+  template: worldbuilding
+types:
+  universe:
+    label: Universe
+    description: The top-level continuity and its governing premise.
+  character:
+    label: Character
+    description: A person or speaking actor in the continuity.
+    properties:
+      role:
+        type: select
+        options: [protagonist, ally, rival, antagonist, mentor, supporting]
+      home:
+        type: entityRef
+        targetTypes: [location]
+      affiliation:
+        type: entityRef
+        targetTypes: [organization]
+  creature:
+    label: Creature
+    description: A collectible, legendary, bureaucratic, or otherwise noteworthy nonhuman being.
+    properties:
+      temperament:
+        type: select
+        options: [docile, theatrical, officious, chaotic, unknowable]
+      habitat:
+        type: entityRef
+        targetTypes: [location]
+      abilities:
+        type: multiSelect
+        options: [spark, paperwork, flight, prophecy, mimicry, continuity]
+  location:
+    label: Location
+    description: A city, institution, region, station, or narratively suspicious building.
+    properties:
+      region:
+        type: text
+      governing-organization:
+        type: entityRef
+        targetTypes: [organization]
+  organization:
+    label: Organization
+    description: A ministry, guild, union, studio, school, or heroic collective.
+    properties:
+      headquarters:
+        type: entityRef
+        targetTypes: [location]
+      ideology:
+        type: text
+      related-characters:
+        type: entityRefList
+        targetTypes: [character]
+  item:
+    label: Item
+    description: A relic, credential, key, coupon, permit, or dangerous office supply.
+    properties:
+      rarity:
+        type: select
+        options: [common, regulated, rare, legendary, narratively-convenient]
+      owner:
+        type: entityRef
+        targetTypes: [character, organization]
+      related-concepts:
+        type: entityRefList
+        targetTypes: [concept]
+  concept:
+    label: Concept
+    description: A metaphysical rule, genre convention, or continuity hazard.
+    properties:
+      risk-level:
+        type: select
+        options: [low, moderate, high, finale-only]
+      related-entities:
+        type: entityRefList
+  event:
+    label: Event
+    description: A historical occurrence in the shared canon.
+    properties:
+      era:
+        type: text
+      location:
+        type: entityRef
+        targetTypes: [location]
+      participants:
+        type: entityRefList
+  story:
+    label: Story
+    description: A narrative container mirrored by a PathBranching workspace.
+    properties:
+      draft-status:
+        type: select
+        options: [outline, draft, revised, final]
+  scene:
+    label: Scene
+    description: A WorldNotion planning scene connected to runtime events.
+    properties:
+      location:
+        type: entityRef
+        targetTypes: [location]
+      viewpoint-character:
+        type: entityRef
+        targetTypes: [character]
+      draft-status:
+        type: select
+        options: [outline, draft, revised, final]

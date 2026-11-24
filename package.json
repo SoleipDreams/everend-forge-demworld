@@ -1,9 +1,9 @@
 {
-  "name": "@everendforge/aux-demworld",
+  "name": "@everendforge/demworld",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "A complete synthetic demonstration universe for Everend Forge.",
+  "description": "The Grand Continuity, a connected example universe for Everend Forge apps.",
   "scripts": {
     "test": "node scripts/validate-vault.mjs",
     "validate": "node scripts/validate-vault.mjs",

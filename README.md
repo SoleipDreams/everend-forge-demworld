@@ -12,8 +12,10 @@ The setting parodies broad genre conventions—space dynasties, wizard schools, 
 
 - A connected canon of characters, locations, organizations, items, creatures, concepts, and historical events.
 - A custom Everend taxonomy and reusable entity templates.
-- A modular PathBranching v0.2 story named **The Last Acceptable Reboot**.
+- A modular PathBranching story named **The Last Acceptable Reboot**.
 - Four major route families and six distinct endings.
+- WorldNotion visual documents for a custom-calendar chronology and a character/institution relationship map.
+- Numeric character attributes, canon character variants, character sheets, and a 1D20 skill check in PathBranching.
 - A Compendium configuration that publishes canon and proposal material.
 - A repository validator and GitHub Actions workflow.
 
@@ -21,9 +23,9 @@ The setting parodies broad genre conventions—space dynasties, wizard schools, 
 
 | Application   | Example data in this repository                                                                                       |
 | ------------- | --------------------------------------------------------------------------------------------------------------------- |
-| WorldNotion   | Markdown entities, folder descriptions, `.everend/universe.json`, `.everend/taxonomy.yaml`, and `.everend/templates/` |
-| PathBranching | `.everend/.pathbranching/manifest.json` and the modular v0.2 story workspace                                          |
-| Compendium    | `.everend/compendium.yaml`, publishable entity statuses, and the read-only narrative projection                       |
+| WorldNotion   | `universe/The-Grand-Continuity.md`, linked entities, `Timelines/`, `Relationships/`, and `.everend/` metadata       |
+| PathBranching | `universe/.everend/.pathbranching/` story, character sheets and variants, plus a D20 skill check                      |
+| Compendium    | `universe/.everend/compendium.yaml`, the dated canon chronology, and the read-only narrative projection              |
 
 ## Story map
 
@@ -49,13 +51,14 @@ flowchart LR
 ## Open it in Everend Forge
 
 1. Clone or download this repository.
-2. Open the repository root as a universe in WorldNotion or the Forge Suite.
-3. Switch to PathBranching to edit **The Last Acceptable Reboot**.
-4. Build the public reader with Compendium:
+2. Choose the `universe/` folder once in Forge Suite. WorldNotion, PathBranching, and Compendium share that clean vault.
+3. Start in WorldNotion with `universe/The-Grand-Continuity.md`, then open the chronology and relationship map.
+4. Open PathBranching to author **The Last Acceptable Reboot**. Inspect the character sheets and the D20 audit check before following its six endings.
+5. Open Compendium to read the same canon and its dated chronology, or build the static reader:
 
 ```bash
 cd ../everend-forge-compendium
-npm run site:build -- ../everend-forge-demworld --out=dist-demo
+npx tsx cli/cli.ts build ../everend-forge-demworld/universe
 ```
 
 ## Validate the vault
@@ -67,9 +70,11 @@ npm test
 
 The validator checks entity identity, taxonomy and Compendium metadata, PathBranching storage structure, canon references, transitions, branches, and the presence of multiple terminal endings.
 
+The repository keeps its validator, dependencies, and license documents outside `universe/`, so applications index only the example world. Per-user editor preferences and transaction locks are stored under `universe/.everend/` and ignored by Git.
+
 ## Guía rápida en español
 
-Este repositorio es un universo de demostración completo. Abre la carpeta raíz en Forge Suite para navegar el canon en WorldNotion, editar las rutas y finales en PathBranching, y generar una enciclopedia estática con Compendium. Todo el contenido es sintético y puede reutilizarse bajo CC BY 4.0.
+Este repositorio ofrece un universo de demostración completo. Abre `universe/` en Forge Suite para navegar el canon, la cronología y el mapa relacional en WorldNotion; editar rutas, fichas y tiradas en PathBranching; y leer la edición de Compendium. Todo el contenido es sintético y puede reutilizarse bajo CC BY 4.0.
 
 ~~~mermaid
 flowchart LR

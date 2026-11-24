@@ -1,0 +1,17 @@
+=== Choose a Continuity Sponsor === #^event:choose-alliance
+
+-> "The Official Restoration Plan" { $"route"<variable:route> == "ministry" } #^transition:alliance-to-ministry
+-> "The Cooperative Fork" { $"route"<variable:route> == "freeplot" } #^transition:alliance-to-freeplot
+-> "Lunch with Continuity Studios" { $"route"<variable:route> == "studio" } #^transition:alliance-to-studio
+
+? Select an approach #^decision:select-alliance
+* [Restore the official canon] #^outcome:route-ministry
+    ~ $"route"<variable:route> = "ministry"
+    ~ $"compliance"<variable:compliance> = 2
+* [Open the stories] #^outcome:route-freeplot
+    ~ $"route"<variable:route> = "freeplot"
+    ~ $"solidarity"<variable:solidarity> = 2
+* [Make the reboot spectacular] #^outcome:route-studio
+    ~ $"route"<variable:route> = "studio"
+    ~ $"spectacle"<variable:spectacle> = 2
+    ~ $"ambition"<variable:ambition> = true

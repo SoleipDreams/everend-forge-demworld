@@ -1,0 +1,11 @@
+=== Lunch with Continuity Studios === #^event:studio-lunch
+
+-> "One Problem, Four Credentials" #^transition:studio-to-convergence
+
+? Negotiate the adaptation #^decision:studio-terms
+* [Demand final cut] #^outcome:creative-control
+    ~ $"spectacle"<variable:spectacle> = 4
+    ~ $"ambition"<variable:ambition> = true
+* [Pretend to accept] #^outcome:inside-job
+    ~ $"spectacle"<variable:spectacle> = 3
+    ~ $"ambition"<variable:ambition> = false

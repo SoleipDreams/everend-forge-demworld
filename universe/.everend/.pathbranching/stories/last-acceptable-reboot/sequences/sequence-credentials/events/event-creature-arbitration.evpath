@@ -1,0 +1,13 @@
+=== The Bureaucratodon Grievance === #^event:creature-arbitration
+
+-> "The Unauthorized Skyline Beam" #^transition:wilds-to-cape
+
+? Resolve the labor dispute #^decision:resolve-grievance
+* [Approve the full settlement] #^outcome:full-settlement
+    ~ $"keyCount"<variable:keyCount> = 3
+    ~ $"solidarity"<variable:solidarity> = 4
+    ~ $undefined<undefined> = undefined
+* [Negotiate phased reimbursement] #^outcome:mediation
+    ~ $"keyCount"<variable:keyCount> = 3
+    ~ $"solidarity"<variable:solidarity> = 3
+    ~ $undefined<undefined> = undefined

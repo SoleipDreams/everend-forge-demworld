@@ -1,0 +1,22 @@
+=== Choose the Continuity === #^event:continuity-console
+
+-> "Ending — Patched Canon" { $"ending"<variable:ending> == "patched" } #^transition:console-to-patched
+-> "Ending — Stories in Common" { $"ending"<variable:ending> == "common" } #^transition:console-to-common
+-> "Ending — Prestige Reboot" { $"ending"<variable:ending> == "reboot" } #^transition:console-to-reboot
+-> "Ending — Executive Promotion" { $"ending"<variable:ending> == "promotion" } #^transition:console-to-promotion
+-> "Ending — Eternal Sequel" { $"ending"<variable:ending> == "sequel" } #^transition:console-to-sequel
+-> "Secret Ending — Ordinary Lunch" { $"ending"<variable:ending> == "lunch" } #^transition:console-to-lunch
+
+? Write the ending #^decision:select-ending
+* [Patch the shared canon] { ($"keyCount"<variable:keyCount> >= 4) and ($"compliance"<variable:compliance> >= 2) } #^outcome:ending-patched
+    ~ $"ending"<variable:ending> = "patched"
+* [Release the stories into common stewardship] { $"solidarity"<variable:solidarity> >= 2 } #^outcome:ending-common
+    ~ $"ending"<variable:ending> = "common"
+* [Authorize a prestige reboot] { $"spectacle"<variable:spectacle> >= 2 } #^outcome:ending-reboot
+    ~ $"ending"<variable:ending> = "reboot"
+* [Accept the executive promotion] { $"ambition"<variable:ambition> == true } #^outcome:ending-promotion
+    ~ $"ending"<variable:ending> = "promotion"
+* [Delay the answer until the sequel] #^outcome:ending-sequel
+    ~ $"ending"<variable:ending> = "sequel"
+* [Use the ordinary emergency exit] { $"noticedBreakRoom"<variable:noticedBreakRoom> == true } #^outcome:ending-lunch
+    ~ $"ending"<variable:ending> = "lunch"

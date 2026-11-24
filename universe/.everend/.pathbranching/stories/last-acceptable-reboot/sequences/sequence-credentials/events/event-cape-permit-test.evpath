@@ -1,0 +1,14 @@
+=== The Unauthorized Skyline Beam === #^event:cape-permit-test
+# Interactions and wait barriers are preserved in the JSON sidecar; edit them in the inspector.
+
+-> "A Complete Genre Credential Set" #^transition:cape-to-assembly
+
+? Stop the beam responsibly #^decision:stop-beam
+* [Coordinate a public response] #^outcome:civic-response
+    ~ $"keyCount"<variable:keyCount> = 4
+    ~ $"compliance"<variable:compliance> = 4
+    ~ $undefined<undefined> = undefined
+* [Unplug it during the monologue] #^outcome:dramatic-unplug
+    ~ $"keyCount"<variable:keyCount> = 4
+    ~ $"spectacle"<variable:spectacle> = 4
+    ~ $undefined<undefined> = undefined
