@@ -6,8 +6,6 @@
     "id": "branch:stellar",
     "title": "Space-Opera Credential",
     "color": "#72B7B2",
-    "eventIds": [
-      "event:orbital-coupon"
-    ]
+    "eventIds": ["event:orbital-coupon"]
   }
 }

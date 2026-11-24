@@ -3,9 +3,9 @@ id: emergency-cape-permit
 type: item
 name: Emergency Cape Permit
 status: canon
-tags: [ superhero, credential, key ]
-aliases: [ Cape Permit, Form Hero-404 ]
-related-concepts: [ narrative-gravity ]
+tags: [superhero, credential, key]
+aliases: [Cape Permit, Form Hero-404]
+related-concepts: [narrative-gravity]
 identity:
   owner: municipal-heroes-local-404
 item-details:

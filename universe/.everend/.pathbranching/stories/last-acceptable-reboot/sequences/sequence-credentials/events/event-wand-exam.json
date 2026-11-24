@@ -27,9 +27,7 @@
           "format": "plain",
           "content": "Magic is the easy part. The difficult part is deciding who must live with it afterward."
         },
-        "canonRefs": [
-          "professor-beige"
-        ],
+        "canonRefs": ["professor-beige"],
         "entryBeatId": "beat:dialogue:beige-exam:1",
         "beats": [
           {

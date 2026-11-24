@@ -6,8 +6,6 @@
     "id": "branch:ending-promotion",
     "title": "Ending: Executive Promotion",
     "color": "#9D755D",
-    "eventIds": [
-      "event:ending-executive-promotion"
-    ]
+    "eventIds": ["event:ending-executive-promotion"]
   }
 }

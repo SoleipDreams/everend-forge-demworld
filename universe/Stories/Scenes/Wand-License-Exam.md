@@ -3,7 +3,7 @@ id: scene-wand-exam
 type: scene
 name: Wand License Exam
 status: canon
-tags: [ magic-school, exam, credential ]
+tags: [magic-school, exam, credential]
 aliases: []
 parentId: last-acceptable-reboot
 viewpoint-character: tess-quill

@@ -3,14 +3,14 @@ id: present-convergence
 type: event
 name: The Present Convergence
 status: canon
-tags: [ current, crisis, finale ]
-aliases: [ The Last Acceptable Reboot, Present Convergence ]
+tags: [current, crisis, finale]
+aliases: [The Last Acceptable Reboot, Present Convergence]
 date: 100 AC
 era: 100 AC
 place:
   location: finale-galleria
 narrative:
-  participants: [ tess-quill, executive-producer, duchess-spoiler ]
+  participants: [tess-quill, executive-producer, duchess-spoiler]
 ---
 
 # The Present Convergence

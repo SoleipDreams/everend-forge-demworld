@@ -6,8 +6,6 @@
     "id": "branch:arcane",
     "title": "Magic-School Credential",
     "color": "#B279A2",
-    "eventIds": [
-      "event:wand-exam"
-    ]
+    "eventIds": ["event:wand-exam"]
   }
 }

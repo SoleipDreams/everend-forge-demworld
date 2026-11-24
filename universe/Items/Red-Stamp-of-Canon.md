@@ -3,9 +3,9 @@ id: red-stamp-canon
 type: item
 name: Red Stamp of Canon
 status: canon
-tags: [ ministry, tool, dangerous ]
-aliases: [ The Red Stamp, Canon Stamp ]
-related-concepts: [ canon-debt, chosen-one-allocation ]
+tags: [ministry, tool, dangerous]
+aliases: [The Red Stamp, Canon Stamp]
+related-concepts: [canon-debt, chosen-one-allocation]
 identity:
   owner: tess-quill
 item-details:

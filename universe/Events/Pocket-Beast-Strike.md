@@ -3,14 +3,14 @@ id: pocket-beast-strike
 type: event
 name: The Pocket Beast Strike
 status: canon
-tags: [ history, labor, creatures ]
-aliases: [ The Great Refusal ]
+tags: [history, labor, creatures]
+aliases: [The Great Refusal]
 date: 71 AC
 era: 71 AC
 place:
   location: collectible-wilds
 narrative:
-  participants: [ sprig-nine, pocket-colossi-union ]
+  participants: [sprig-nine, pocket-colossi-union]
 ---
 
 # The Pocket Beast Strike

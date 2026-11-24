@@ -12,11 +12,7 @@
       "event:studio-lunch",
       "event:alliance-convergence"
     ],
-    "branchIds": [
-      "branch:ministry",
-      "branch:freeplot",
-      "branch:studio"
-    ],
+    "branchIds": ["branch:ministry", "branch:freeplot", "branch:studio"],
     "initialInventory": []
   }
 }

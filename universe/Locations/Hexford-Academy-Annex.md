@@ -3,8 +3,8 @@ id: hexford-academy-annex
 type: location
 name: Hexford Academy Annex
 status: canon
-tags: [ academy, magic, satellite-campus ]
-aliases: [ Hexford, The Annex ]
+tags: [academy, magic, satellite-campus]
+aliases: [Hexford, The Annex]
 governing-organization: licensed-wizard-faculty
 place:
   region: Scholastic Marches

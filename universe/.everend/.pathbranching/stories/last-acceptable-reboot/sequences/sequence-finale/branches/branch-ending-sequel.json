@@ -6,8 +6,6 @@
     "id": "branch:ending-sequel",
     "title": "Ending: Eternal Sequel",
     "color": "#BAB0AC",
-    "eventIds": [
-      "event:ending-eternal-sequel"
-    ]
+    "eventIds": ["event:ending-eternal-sequel"]
   }
 }

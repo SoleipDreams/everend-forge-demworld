@@ -16,10 +16,10 @@ El mundo reúne, con humor, géneros de fantasía, ciencia ficción, criaturas c
 
 Para generar el sitio estático de Compendium desde el repositorio hermano:
 
-~~~sh
+```sh
 cd ../everend-forge-compendium
 npx tsx cli/cli.ts build ../everend-forge-demworld/universe
-~~~
+```
 
 ## Qué demuestra
 

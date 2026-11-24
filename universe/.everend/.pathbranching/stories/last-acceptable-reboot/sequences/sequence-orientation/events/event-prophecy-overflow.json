@@ -25,9 +25,7 @@
           "format": "plain",
           "content": "I would like to appeal this destiny on the grounds that I have a meeting at ten."
         },
-        "canonRefs": [
-          "tess-quill"
-        ],
+        "canonRefs": ["tess-quill"],
         "entryBeatId": "beat:dialogue:tess-opening:1",
         "beats": [
           {

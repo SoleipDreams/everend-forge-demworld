@@ -3,8 +3,8 @@ id: meridian-junction
 type: location
 name: Meridian Junction
 status: canon
-tags: [ city, crossover, transit ]
-aliases: [ The Junction, Center of Everything This Week ]
+tags: [city, crossover, transit]
+aliases: [The Junction, Center of Everything This Week]
 governing-organization: ministry-narrative-compliance
 place:
   region: Central Continuity

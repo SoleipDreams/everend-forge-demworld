@@ -3,9 +3,9 @@ id: mutual-aid-badge
 type: item
 name: Mutual Aid Badge
 status: canon
-tags: [ creature, credential, key ]
-aliases: [ Union Badge, Consent Emblem ]
-related-concepts: [ canon-debt ]
+tags: [creature, credential, key]
+aliases: [Union Badge, Consent Emblem]
+related-concepts: [canon-debt]
 identity:
   owner: pocket-colossi-union
 item-details:

@@ -3,9 +3,9 @@ id: provisional-wand-license
 type: item
 name: Provisional Wand License
 status: canon
-tags: [ magic, credential, key ]
-aliases: [ Wand License, Form Thaum-7 ]
-related-concepts: [ chosen-one-allocation ]
+tags: [magic, credential, key]
+aliases: [Wand License, Form Thaum-7]
+related-concepts: [chosen-one-allocation]
 identity:
   owner: licensed-wizard-faculty
 item-details:

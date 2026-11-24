@@ -3,8 +3,8 @@ id: collectible-wilds
 type: location
 name: Collectible Wilds
 status: canon
-tags: [ wilderness, creatures, union ]
-aliases: [ The Wilds, Route Everywhere ]
+tags: [wilderness, creatures, union]
+aliases: [The Wilds, Route Everywhere]
 governing-organization: pocket-colossi-union
 place:
   region: Catalogued Hinterlands

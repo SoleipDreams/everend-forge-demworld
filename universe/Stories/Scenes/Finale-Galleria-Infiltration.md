@@ -3,7 +3,7 @@ id: scene-final-galleria
 type: scene
 name: Finale Galleria Infiltration
 status: canon
-tags: [ finale, confrontation ]
+tags: [finale, confrontation]
 aliases: []
 parentId: last-acceptable-reboot
 viewpoint-character: tess-quill

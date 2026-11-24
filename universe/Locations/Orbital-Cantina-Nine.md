@@ -3,8 +3,8 @@ id: orbital-cantina-nine
 type: location
 name: Orbital Cantina Nine
 status: canon
-tags: [ spaceport, cantina, heist ]
-aliases: [ Cantina Nine, The Ninth Bar ]
+tags: [spaceport, cantina, heist]
+aliases: [Cantina Nine, The Ninth Bar]
 governing-organization: continuity-studios
 place:
   region: Convenient Outer Rim

@@ -1,8 +1,8 @@
 ---
-id: {{id}}
+id: { { id } }
 type: location
-name: {{name}}
-status: {{status}}
+name: { { name } }
+status: { { status } }
 tags: []
 aliases: []
 place:

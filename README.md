@@ -21,11 +21,11 @@ The setting parodies broad genre conventions—space dynasties, wizard schools, 
 
 ## Application boundaries
 
-| Application   | Example data in this repository                                                                                       |
-| ------------- | --------------------------------------------------------------------------------------------------------------------- |
-| WorldNotion   | `universe/The-Grand-Continuity.md`, linked entities, `Timelines/`, `Relationships/`, and `.everend/` metadata       |
-| PathBranching | `universe/.everend/.pathbranching/` story, character sheets and variants, plus a D20 skill check                      |
-| Compendium    | `universe/.everend/compendium.yaml`, the dated canon chronology, and the read-only narrative projection              |
+| Application   | Example data in this repository                                                                               |
+| ------------- | ------------------------------------------------------------------------------------------------------------- |
+| WorldNotion   | `universe/The-Grand-Continuity.md`, linked entities, `Timelines/`, `Relationships/`, and `.everend/` metadata |
+| PathBranching | `universe/.everend/.pathbranching/` story, character sheets and variants, plus a D20 skill check              |
+| Compendium    | `universe/.everend/compendium.yaml`, the dated canon chronology, and the read-only narrative projection       |
 
 ## Story map
 
@@ -76,12 +76,12 @@ The repository keeps its validator, dependencies, and license documents outside 
 
 Este repositorio ofrece un universo de demostración completo. Abre `universe/` en Forge Suite para navegar el canon, la cronología y el mapa relacional en WorldNotion; editar rutas, fichas y tiradas en PathBranching; y leer la edición de Compendium. Todo el contenido es sintético y puede reutilizarse bajo CC BY 4.0.
 
-~~~mermaid
+```mermaid
 flowchart LR
   A[WorldNotion: canon] --> B[PathBranching: choices and endings]
   A --> C[Compendium: public reading site]
   B --> C
-~~~
+```
 
 ## Support
 
@@ -90,4 +90,3 @@ If Everend Forge is useful to you, you can support its development on [Ko-fi](ht
 ## License
 
 The synthetic setting, stories, configurations, and documentation are CC BY 4.0. Preserve attribution and indicate changes when adapting them. See [license scope](LICENSE), [full license text](LICENSE-CC-BY-4.0), and the [brand policy](TRADEMARKS.md).
-

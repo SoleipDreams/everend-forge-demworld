@@ -3,9 +3,9 @@ id: stellar-plot-coupon
 type: item
 name: Stellar Plot Coupon
 status: canon
-tags: [ space-opera, credential, key ]
-aliases: [ Plot Coupon, Impossible Maneuver Voucher ]
-related-concepts: [ narrative-gravity ]
+tags: [space-opera, credential, key]
+aliases: [Plot Coupon, Impossible Maneuver Voucher]
+related-concepts: [narrative-gravity]
 identity:
   owner: captain-sol-ledger
 item-details:

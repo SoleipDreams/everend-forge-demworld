@@ -27,10 +27,7 @@
           "format": "plain",
           "content": "You can save every part of the world that tests well. I can even put your name above the title."
         },
-        "canonRefs": [
-          "executive-producer",
-          "tess-quill"
-        ],
+        "canonRefs": ["executive-producer", "tess-quill"],
         "entryBeatId": "beat:dialogue:producer-offer:1",
         "beats": [
           {

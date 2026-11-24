@@ -3,14 +3,14 @@ id: great-prophecy-recall
 type: event
 name: The Great Prophecy Recall
 status: canon
-tags: [ history, prophecy, safety ]
-aliases: [ Recall of 47 AC ]
+tags: [history, prophecy, safety]
+aliases: [Recall of 47 AC]
 date: 47 AC
 era: 47 AC
 place:
   location: office-prophecy-allocation
 narrative:
-  participants: [ nana-null, ministry-narrative-compliance ]
+  participants: [nana-null, ministry-narrative-compliance]
 ---
 
 # The Great Prophecy Recall

@@ -3,14 +3,14 @@ id: first-merger
 type: event
 name: The First Merger
 status: canon
-tags: [ history, convergence ]
-aliases: [ Merger Day ]
+tags: [history, convergence]
+aliases: [Merger Day]
 date: 0 AC
 era: Year 0 AC (After Crossover)
 place:
   location: meridian-junction
 narrative:
-  participants: [ ministry-narrative-compliance ]
+  participants: [ministry-narrative-compliance]
 ---
 
 # The First Merger

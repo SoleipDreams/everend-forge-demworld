@@ -3,8 +3,8 @@ id: office-prophecy-allocation
 type: location
 name: Office of Prophecy Allocation
 status: canon
-tags: [ office, prophecy, ministry ]
-aliases: [ OPA, Destiny Records ]
+tags: [office, prophecy, ministry]
+aliases: [OPA, Destiny Records]
 governing-organization: ministry-narrative-compliance
 place:
   region: Meridian Junction

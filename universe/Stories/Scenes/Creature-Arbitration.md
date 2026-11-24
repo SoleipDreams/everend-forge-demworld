@@ -3,7 +3,7 @@ id: scene-creature-arbitration
 type: scene
 name: Creature Arbitration
 status: canon
-tags: [ creatures, union, credential ]
+tags: [creatures, union, credential]
 aliases: []
 parentId: last-acceptable-reboot
 viewpoint-character: tess-quill

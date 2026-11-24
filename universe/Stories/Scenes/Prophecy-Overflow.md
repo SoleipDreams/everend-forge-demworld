@@ -3,7 +3,7 @@ id: scene-prophecy-overflow
 type: scene
 name: Prophecy Overflow
 status: canon
-tags: [ opening, office, prophecy ]
+tags: [opening, office, prophecy]
 aliases: []
 parentId: last-acceptable-reboot
 viewpoint-character: tess-quill

@@ -3,8 +3,8 @@ id: finale-galleria
 type: location
 name: Finale Galleria
 status: canon
-tags: [ finale, mall, studio ]
-aliases: [ The Galleria, Third-Act Mall ]
+tags: [finale, mall, studio]
+aliases: [The Galleria, Third-Act Mall]
 governing-organization: continuity-studios
 place:
   region: Meridian Terminus

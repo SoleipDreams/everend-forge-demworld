@@ -254,16 +254,8 @@
         "description": "Person, creature, or viewpoint actor",
         "icon": "user",
         "color": "#3b82f6",
-        "customFields": [
-          "lore-level",
-          "identity",
-          "narrative"
-        ],
-        "visibleProperties": [
-          "type",
-          "status",
-          "aliases"
-        ],
+        "customFields": ["lore-level", "identity", "narrative"],
+        "visibleProperties": ["type", "status", "aliases"],
         "propertyOrder": [
           "type",
           "status",
@@ -279,12 +271,7 @@
         "description": "Noteworthy nonhuman beings and collectible creatures",
         "icon": "paw-print",
         "color": "#84cc16",
-        "customFields": [
-          "lore-level",
-          "habitat",
-          "temperament",
-          "abilities"
-        ],
+        "customFields": ["lore-level", "habitat", "temperament", "abilities"],
         "visibleProperties": [
           "type",
           "status",
@@ -310,11 +297,7 @@
         "description": "Place, region, settlement, or site",
         "icon": "map-pin",
         "color": "#10b981",
-        "customFields": [
-          "lore-level",
-          "place",
-          "governing-organization"
-        ],
+        "customFields": ["lore-level", "place", "governing-organization"],
         "visibleProperties": [
           "type",
           "status",
@@ -403,12 +386,7 @@
         "description": "Canon event or historical beat",
         "icon": "calendar",
         "color": "#ef4444",
-        "customFields": [
-          "lore-level",
-          "place",
-          "narrative",
-          "era"
-        ],
+        "customFields": ["lore-level", "place", "narrative", "era"],
         "visibleProperties": [
           "type",
           "status",
@@ -467,11 +445,7 @@
         "description": "Major setting, planet, realm, or connected world",
         "icon": "globe",
         "color": "#0ea5e9",
-        "customFields": [
-          "lore-level",
-          "place",
-          "concept-details"
-        ],
+        "customFields": ["lore-level", "place", "concept-details"],
         "visibleProperties": [
           "type",
           "status",
@@ -496,10 +470,7 @@
         "description": "Era, cycle, age, or large continuity span",
         "icon": "refresh-cw",
         "color": "#14b8a6",
-        "customFields": [
-          "lore-level",
-          "concept-details"
-        ],
+        "customFields": ["lore-level", "concept-details"],
         "visibleProperties": [
           "type",
           "status",
@@ -523,10 +494,7 @@
         "description": "Top-level canon container or cosmology",
         "icon": "sparkles",
         "color": "#a855f7",
-        "customFields": [
-          "lore-level",
-          "concept-details"
-        ],
+        "customFields": ["lore-level", "concept-details"],
         "visibleProperties": [
           "type",
           "status",
@@ -550,12 +518,7 @@
         "description": "Narrative work, storyline, or authored plot container",
         "icon": "book-open",
         "color": "#f97316",
-        "customFields": [
-          "lore-level",
-          "place",
-          "narrative",
-          "draft-status"
-        ],
+        "customFields": ["lore-level", "place", "narrative", "draft-status"],
         "visibleProperties": [
           "type",
           "status",
@@ -574,9 +537,7 @@
           "narrative",
           "draft-status"
         ],
-        "hiddenProperties": [
-          "aliases"
-        ]
+        "hiddenProperties": ["aliases"]
       },
       {
         "id": "arc",
@@ -584,11 +545,7 @@
         "description": "Narrative arc within a story or continuity",
         "icon": "route",
         "color": "#eab308",
-        "customFields": [
-          "lore-level",
-          "place",
-          "narrative"
-        ],
+        "customFields": ["lore-level", "place", "narrative"],
         "visibleProperties": [
           "type",
           "status",
@@ -646,11 +603,7 @@
         "description": "Playable or authored objective chain",
         "icon": "flag",
         "color": "#06b6d4",
-        "customFields": [
-          "lore-level",
-          "place",
-          "narrative"
-        ],
+        "customFields": ["lore-level", "place", "narrative"],
         "visibleProperties": [
           "type",
           "status",
@@ -781,11 +734,7 @@
         "type": "group",
         "description": "Roles, homes, affiliations, ownership, and identity relationships",
         "required": false,
-        "appliesTo": [
-          "character",
-          "organization",
-          "item"
-        ],
+        "appliesTo": ["character", "organization", "item"],
         "children": [
           {
             "id": "role",
@@ -793,10 +742,7 @@
             "type": "select",
             "description": "Narrative or institutional function",
             "required": false,
-            "appliesTo": [
-              "character",
-              "organization"
-            ],
+            "appliesTo": ["character", "organization"],
             "options": [
               {
                 "value": "protagonist",
@@ -836,12 +782,8 @@
             "type": "entity-ref",
             "description": "Organization, faction, house, or group connected to this note",
             "required": false,
-            "appliesTo": [
-              "character"
-            ],
-            "targetTypes": [
-              "organization"
-            ]
+            "appliesTo": ["character"],
+            "targetTypes": ["organization"]
           },
           {
             "id": "home",
@@ -849,14 +791,8 @@
             "type": "entity-ref",
             "description": "Primary place connected to this entity",
             "required": false,
-            "appliesTo": [
-              "character",
-              "organization"
-            ],
-            "targetTypes": [
-              "location",
-              "world"
-            ]
+            "appliesTo": ["character", "organization"],
+            "targetTypes": ["location", "world"]
           },
           {
             "id": "owner",
@@ -864,13 +800,8 @@
             "type": "entity-ref",
             "description": "Current or notable owner",
             "required": false,
-            "appliesTo": [
-              "item"
-            ],
-            "targetTypes": [
-              "character",
-              "organization"
-            ]
+            "appliesTo": ["item"],
+            "targetTypes": ["character", "organization"]
           }
         ]
       },
@@ -897,10 +828,7 @@
             "type": "select",
             "description": "Physical or social scale",
             "required": false,
-            "appliesTo": [
-              "location",
-              "world"
-            ],
+            "appliesTo": ["location", "world"],
             "options": [
               {
                 "value": "room",
@@ -935,9 +863,7 @@
             "type": "text",
             "description": "Named region or surrounding area",
             "required": false,
-            "appliesTo": [
-              "location"
-            ]
+            "appliesTo": ["location"]
           },
           {
             "id": "population",
@@ -945,10 +871,7 @@
             "type": "text",
             "description": "Population estimate or known inhabitants",
             "required": false,
-            "appliesTo": [
-              "location",
-              "world"
-            ]
+            "appliesTo": ["location", "world"]
           },
           {
             "id": "location",
@@ -956,18 +879,8 @@
             "type": "entity-ref",
             "description": "Place where this event, story, scene, quest, or object belongs",
             "required": false,
-            "appliesTo": [
-              "item",
-              "event",
-              "story",
-              "arc",
-              "scene",
-              "quest"
-            ],
-            "targetTypes": [
-              "location",
-              "world"
-            ]
+            "appliesTo": ["item", "event", "story", "arc", "scene", "quest"],
+            "targetTypes": ["location", "world"]
           }
         ]
       },
@@ -977,14 +890,7 @@
         "type": "group",
         "description": "Story structure, timing, and participation",
         "required": false,
-        "appliesTo": [
-          "character",
-          "event",
-          "story",
-          "arc",
-          "scene",
-          "quest"
-        ],
+        "appliesTo": ["character", "event", "story", "arc", "scene", "quest"],
         "children": [
           {
             "id": "arc",
@@ -992,13 +898,7 @@
             "type": "select",
             "description": "Narrative arc state",
             "required": false,
-            "appliesTo": [
-              "character",
-              "story",
-              "arc",
-              "scene",
-              "quest"
-            ],
+            "appliesTo": ["character", "story", "arc", "scene", "quest"],
             "options": [
               {
                 "value": "setup",
@@ -1033,10 +933,7 @@
             "type": "date",
             "description": "In-world or planning date",
             "required": false,
-            "appliesTo": [
-              "event",
-              "scene"
-            ]
+            "appliesTo": ["event", "scene"]
           },
           {
             "id": "participants",
@@ -1044,17 +941,8 @@
             "type": "entity-ref-list",
             "description": "Characters or organizations involved",
             "required": false,
-            "appliesTo": [
-              "event",
-              "story",
-              "arc",
-              "scene",
-              "quest"
-            ],
-            "targetTypes": [
-              "character",
-              "organization"
-            ]
+            "appliesTo": ["event", "story", "arc", "scene", "quest"],
+            "targetTypes": ["character", "organization"]
           }
         ]
       },
@@ -1064,9 +952,7 @@
         "type": "group",
         "description": "Item materiality and rarity",
         "required": false,
-        "appliesTo": [
-          "item"
-        ],
+        "appliesTo": ["item"],
         "children": [
           {
             "id": "rarity",
@@ -1074,9 +960,7 @@
             "type": "select",
             "description": "How common or legendary an item is",
             "required": false,
-            "appliesTo": [
-              "item"
-            ],
+            "appliesTo": ["item"],
             "options": [
               {
                 "value": "common",
@@ -1121,9 +1005,7 @@
             "type": "text",
             "description": "Primary material, component, or substance",
             "required": false,
-            "appliesTo": [
-              "item"
-            ]
+            "appliesTo": ["item"]
           }
         ]
       },
@@ -1133,12 +1015,7 @@
         "type": "group",
         "description": "Ideas, rules, categories, cosmology, and abstract systems",
         "required": false,
-        "appliesTo": [
-          "concept",
-          "world",
-          "cycle",
-          "universe"
-        ],
+        "appliesTo": ["concept", "world", "cycle", "universe"],
         "children": [
           {
             "id": "theme",
@@ -1146,12 +1023,7 @@
             "type": "text",
             "description": "Major idea, motif, or concept family",
             "required": false,
-            "appliesTo": [
-              "concept",
-              "world",
-              "cycle",
-              "universe"
-            ]
+            "appliesTo": ["concept", "world", "cycle", "universe"]
           },
           {
             "id": "rules",
@@ -1159,12 +1031,7 @@
             "type": "text",
             "description": "Important constraints, laws, or operating rules",
             "required": false,
-            "appliesTo": [
-              "concept",
-              "world",
-              "cycle",
-              "universe"
-            ]
+            "appliesTo": ["concept", "world", "cycle", "universe"]
           },
           {
             "id": "category",
@@ -1172,12 +1039,7 @@
             "type": "select",
             "description": "Worldbuilding category",
             "required": false,
-            "appliesTo": [
-              "concept",
-              "world",
-              "cycle",
-              "universe"
-            ],
+            "appliesTo": ["concept", "world", "cycle", "universe"],
             "options": [
               {
                 "value": "character",
@@ -1251,9 +1113,7 @@
             "color": "#10b981"
           }
         ],
-        "appliesTo": [
-          "creature"
-        ]
+        "appliesTo": ["creature"]
       },
       {
         "id": "habitat",
@@ -1261,12 +1121,8 @@
         "type": "entity-ref",
         "description": "Primary habitat or territory",
         "required": false,
-        "targetTypes": [
-          "location"
-        ],
-        "appliesTo": [
-          "creature"
-        ]
+        "targetTypes": ["location"],
+        "appliesTo": ["creature"]
       },
       {
         "id": "temperament",
@@ -1301,9 +1157,7 @@
             "color": "#475569"
           }
         ],
-        "appliesTo": [
-          "creature"
-        ]
+        "appliesTo": ["creature"]
       },
       {
         "id": "era",
@@ -1311,9 +1165,7 @@
         "type": "text",
         "description": "In-world date or era label",
         "required": false,
-        "appliesTo": [
-          "event"
-        ]
+        "appliesTo": ["event"]
       },
       {
         "id": "draft-status",
@@ -1343,10 +1195,7 @@
             "color": "#10b981"
           }
         ],
-        "appliesTo": [
-          "story",
-          "scene"
-        ]
+        "appliesTo": ["story", "scene"]
       },
       {
         "id": "governing-organization",
@@ -1354,12 +1203,8 @@
         "type": "entity-ref",
         "description": "Organization responsible for this location",
         "required": false,
-        "targetTypes": [
-          "organization"
-        ],
-        "appliesTo": [
-          "location"
-        ]
+        "targetTypes": ["organization"],
+        "appliesTo": ["location"]
       },
       {
         "id": "headquarters",
@@ -1367,12 +1212,8 @@
         "type": "entity-ref",
         "description": "Primary office or base of an organization",
         "required": false,
-        "targetTypes": [
-          "location"
-        ],
-        "appliesTo": [
-          "organization"
-        ]
+        "targetTypes": ["location"],
+        "appliesTo": ["organization"]
       },
       {
         "id": "ideology",
@@ -1380,9 +1221,7 @@
         "type": "text",
         "description": "Core belief or operating principle",
         "required": false,
-        "appliesTo": [
-          "organization"
-        ]
+        "appliesTo": ["organization"]
       },
       {
         "id": "related-characters",
@@ -1390,12 +1229,8 @@
         "type": "entity-ref-list",
         "description": "Characters connected to this organization",
         "required": false,
-        "targetTypes": [
-          "character"
-        ],
-        "appliesTo": [
-          "organization"
-        ]
+        "targetTypes": ["character"],
+        "appliesTo": ["organization"]
       },
       {
         "id": "related-concepts",
@@ -1403,12 +1238,8 @@
         "type": "entity-ref-list",
         "description": "Concepts connected to this item",
         "required": false,
-        "targetTypes": [
-          "concept"
-        ],
-        "appliesTo": [
-          "item"
-        ]
+        "targetTypes": ["concept"],
+        "appliesTo": ["item"]
       },
       {
         "id": "related-entities",
@@ -1432,9 +1263,7 @@
           "quest",
           "creature"
         ],
-        "appliesTo": [
-          "concept"
-        ]
+        "appliesTo": ["concept"]
       },
       {
         "id": "risk-level",
@@ -1464,9 +1293,7 @@
             "color": "#8b5cf6"
           }
         ],
-        "appliesTo": [
-          "concept"
-        ]
+        "appliesTo": ["concept"]
       },
       {
         "id": "viewpoint-character",
@@ -1474,12 +1301,8 @@
         "type": "entity-ref",
         "description": "Character whose perspective anchors this scene",
         "required": false,
-        "targetTypes": [
-          "character"
-        ],
-        "appliesTo": [
-          "scene"
-        ]
+        "targetTypes": ["character"],
+        "appliesTo": ["scene"]
       },
       {
         "id": "attributes",
@@ -1487,9 +1310,7 @@
         "type": "group",
         "description": "Numeric character traits used by PathBranching character sheets and skill checks",
         "required": false,
-        "appliesTo": [
-          "character"
-        ],
+        "appliesTo": ["character"],
         "children": [
           {
             "id": "resolve",
@@ -1499,9 +1320,7 @@
             "min": 0,
             "max": 5,
             "required": false,
-            "appliesTo": [
-              "character"
-            ]
+            "appliesTo": ["character"]
           },
           {
             "id": "ingenuity",
@@ -1511,9 +1330,7 @@
             "min": 0,
             "max": 5,
             "required": false,
-            "appliesTo": [
-              "character"
-            ]
+            "appliesTo": ["character"]
           },
           {
             "id": "empathy",
@@ -1523,9 +1340,7 @@
             "min": 0,
             "max": 5,
             "required": false,
-            "appliesTo": [
-              "character"
-            ]
+            "appliesTo": ["character"]
           },
           {
             "id": "authority",
@@ -1535,9 +1350,7 @@
             "min": 0,
             "max": 5,
             "required": false,
-            "appliesTo": [
-              "character"
-            ]
+            "appliesTo": ["character"]
           }
         ]
       },
@@ -1547,14 +1360,9 @@
         "type": "text",
         "description": "In-world year shown by Compendium's chronology, for example 47 AC",
         "required": false,
-        "appliesTo": [
-          "event",
-          "story"
-        ]
+        "appliesTo": ["event", "story"]
       }
     ],
-    "globalFields": [
-      "lore-level"
-    ]
+    "globalFields": ["lore-level"]
   }
 }

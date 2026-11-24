@@ -3,7 +3,7 @@ id: scene-cape-crisis
 type: scene
 name: Cape Permit Test
 status: canon
-tags: [ superhero, civic, credential ]
+tags: [superhero, civic, credential]
 aliases: []
 parentId: last-acceptable-reboot
 viewpoint-character: tess-quill

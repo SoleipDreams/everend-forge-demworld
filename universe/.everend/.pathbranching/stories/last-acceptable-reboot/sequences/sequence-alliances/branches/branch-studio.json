@@ -7,8 +7,6 @@
     "title": "Make It Spectacular",
     "description": "Accept Studio resources and shape the reboot from inside.",
     "color": "#E45756",
-    "eventIds": [
-      "event:studio-lunch"
-    ]
+    "eventIds": ["event:studio-lunch"]
   }
 }

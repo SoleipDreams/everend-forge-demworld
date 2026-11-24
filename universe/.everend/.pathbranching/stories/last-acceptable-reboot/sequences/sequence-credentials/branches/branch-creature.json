@@ -6,8 +6,6 @@
     "id": "branch:creature",
     "title": "Creature-Companion Credential",
     "color": "#59A14F",
-    "eventIds": [
-      "event:creature-arbitration"
-    ]
+    "eventIds": ["event:creature-arbitration"]
   }
 }

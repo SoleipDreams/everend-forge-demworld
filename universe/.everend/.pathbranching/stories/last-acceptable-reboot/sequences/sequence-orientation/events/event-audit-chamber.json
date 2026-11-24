@@ -28,10 +28,7 @@
           "format": "plain",
           "content": "A healthy continuity is a conversation, dear. A dead one is a filing cabinet with excellent branding."
         },
-        "canonRefs": [
-          "nana-null",
-          "continuity-engine"
-        ],
+        "canonRefs": ["nana-null", "continuity-engine"],
         "entryBeatId": "beat:dialogue:null-engine:1",
         "beats": [
           {

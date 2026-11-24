@@ -27,9 +27,7 @@
           "format": "plain",
           "content": "They filmed six endings. Let us make the seventh thing they fear: an unscheduled decision."
         },
-        "canonRefs": [
-          "duchess-spoiler"
-        ],
+        "canonRefs": ["duchess-spoiler"],
         "entryBeatId": "beat:dialogue:duchess-improvise:1",
         "beats": [
           {

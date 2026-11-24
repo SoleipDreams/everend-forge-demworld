@@ -3,7 +3,7 @@ id: scene-orbital-coupon
 type: scene
 name: Orbital Coupon Heist
 status: canon
-tags: [ space-opera, heist, credential ]
+tags: [space-opera, heist, credential]
 aliases: []
 parentId: last-acceptable-reboot
 viewpoint-character: tess-quill

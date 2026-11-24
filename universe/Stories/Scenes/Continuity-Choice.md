@@ -3,7 +3,7 @@ id: scene-continuity-choice
 type: scene
 name: The Continuity Choice
 status: proposal
-tags: [ finale, endings, choice ]
+tags: [finale, endings, choice]
 aliases: []
 parentId: last-acceptable-reboot
 viewpoint-character: tess-quill

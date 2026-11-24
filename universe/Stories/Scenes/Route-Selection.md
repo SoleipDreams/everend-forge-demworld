@@ -3,7 +3,7 @@ id: scene-route-selection
 type: scene
 name: Route Selection
 status: canon
-tags: [ alliance, branch ]
+tags: [alliance, branch]
 aliases: []
 parentId: last-acceptable-reboot
 viewpoint-character: tess-quill
