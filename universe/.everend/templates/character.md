@@ -1,8 +1,8 @@
 ---
-id: { { id } }
+id: "{{id}}"
 type: character
-name: { { name } }
-status: { { status } }
+name: "{{name}}"
+status: "{{status}}"
 tags: [cast]
 aliases: []
 identity:

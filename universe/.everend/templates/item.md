@@ -1,8 +1,8 @@
 ---
-id: { { id } }
+id: "{{id}}"
 type: item
-name: { { name } }
-status: { { status } }
+name: "{{name}}"
+status: "{{status}}"
 tags: []
 aliases: []
 item-details:

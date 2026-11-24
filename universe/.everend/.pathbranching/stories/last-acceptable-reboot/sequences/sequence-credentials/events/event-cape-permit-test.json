@@ -160,15 +160,6 @@
         "order": 0,
         "mode": "conditional",
         "label": "Assemble the four credentials"
-      },
-      {
-        "id": "transition:boundary:event:cape-permit-test:input:transition:wilds-to-cape:decision:event:cape-permit-test:decision:stop-beam",
-        "from": "boundary:event:cape-permit-test:input:transition:wilds-to-cape",
-        "to": "decision:event:cape-permit-test:decision:stop-beam",
-        "role": "flow",
-        "order": 0,
-        "mode": "conditional",
-        "source": "graph"
       }
     ],
     "childEventIds": [],
